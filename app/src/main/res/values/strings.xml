@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SportApp</string>
+    <string name="app_name">Footie</string>
 
     <!-- Onboarding -->
     <string name="onboarding_easy_follow">Easy Follow</string>
