@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">SportApp</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_easy_follow">Easy Follow</string>
+    <string name="onboarding_text1">Choose your favourite club and catch the latest information</string>
+    <string name="onboarding_next1">Next</string>
+    <string name="onboarding_skip">Skip</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="onboarding_easy_follow">Easy Follow</string>
+    <string name="onboarding_fast_update">Fast Update</string>
+    <string name="onboarding_text2">Stay updated with match higlights, preview and hot news</string>
+    <string name="onboarding_back">Back</string>
+    <string name="onboarding_stable_and_secured">Stable and Secured</string>
+    <string name="onboarding_text3">Browse for teams and matches securely and safely</string>
+    <string name="onboarding_lets_get_started">Let\'s Get Started</string>
 </resources>
