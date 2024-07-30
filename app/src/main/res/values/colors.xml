@@ -5,4 +5,5 @@
     <color name="text_secondary">#FF8D8D8D</color>
     <color name="theme_main">#1E1E1E</color>
     <color name="theme_button">#00A3B7</color>
+    <color name="theme_textfield">#2C2C2C</color>
 </resources>

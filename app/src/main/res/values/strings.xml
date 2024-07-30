@@ -6,7 +6,6 @@
     <string name="onboarding_text1">Choose your favourite club and catch the latest information</string>
     <string name="onboarding_next1">Next</string>
     <string name="onboarding_skip">Skip</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="onboarding_fast_update">Fast Update</string>
     <string name="onboarding_text2">Stay updated with match higlights, preview and hot news</string>
@@ -14,4 +13,27 @@
     <string name="onboarding_stable_and_secured">Stable and Secured</string>
     <string name="onboarding_text3">Browse for teams and matches securely and safely</string>
     <string name="onboarding_lets_get_started">Let\'s Get Started</string>
+    
+    <!--Login-->
+    <string name="Login_welcome_back">Welcome back,</string>
+    <string name="Login_text">Please login to enjoy full feature</string>
+    <string name="Login_email">Email</string>
+    <string name="Login_password">Password</string>
+    <string name="Login_forgot_password">Forgot password?</string>
+    <string name="Login_login">Login</string>
+    <string name="Login_or_login_with">Or login with</string>
+    <string name="Login_not_have_an_account">Not have an account?</string>
+    <string name="Login_register_now">Register now</string>
+
+    <!--Signup-->
+    <string name="Signup_welcome_to_footie">Welcome to Footie</string>
+    <string name="Signup_text">Create an account to explore amazing features</string>
+    <string name="Signup_username">Username</string>
+    <string name="Signup_confirm_password">Confirm Password</string>
+    <string name="Signup_register">Register</string>
+    <string name="Signup_or_register_with">Or register with</string>
+    <string name="Signup_have_an_account">Have an account?</string>
+    <string name="Signup_login">Login</string>
+
+
 </resources>
