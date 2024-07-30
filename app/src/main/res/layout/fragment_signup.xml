@@ -50,7 +50,8 @@
                 android:hint="@string/Signup_username"
                 android:inputType="text"
                 android:paddingStart="60dp"
-                tools:ignore="Autofill,RtlSymmetry,TextFields" />
+                tools:ignore="Autofill,RtlSymmetry,TextFields"
+                android:textColor="@color/text_main"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +75,8 @@
                 android:hint="@string/Login_email"
                 android:paddingStart="60dp"
                 tools:ignore="Autofill,RtlSymmetry,TextFields"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:textColor="@color/text_main"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +102,8 @@
                 android:hint="@string/Login_password"
                 android:inputType="textPassword"
                 android:paddingStart="60dp"
-                tools:ignore="Autofill,RtlSymmetry,TextFields" />
+                tools:ignore="Autofill,RtlSymmetry,TextFields"
+                android:textColor="@color/text_main"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,7 +129,8 @@
                 android:hint="@string/Signup_confirm_password"
                 android:inputType="textPassword"
                 android:paddingStart="60dp"
-                tools:ignore="Autofill,RtlSymmetry,TextFields" />
+                tools:ignore="Autofill,RtlSymmetry,TextFields"
+                android:textColor="@color/text_main"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,7 +138,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegister"
         android:layout_width="336dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
@@ -179,6 +183,7 @@
             android:textSize="14sp"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/toLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Signup_login"
