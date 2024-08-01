@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.main.fragment.HomeFragment"
+    android:layout_marginTop="20dp"
     android:padding="16dp"
-    android:layout_marginTop="20dp">
+    tools:context=".presentation.main.fragment.HomeFragment">
 
     <LinearLayout
+        android:id="@+id/containerMatchPrevious"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/containerMatchPrevious"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,12 +20,12 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
                 android:text="@string/Home_latest_results_by_league"
-                android:textSize="18sp"
                 android:textColor="@color/text_main"
-                android:layout_gravity="start"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
                 android:id="@+id/leagueContainer1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
         </ScrollView>
 
         <ScrollView
@@ -57,18 +57,18 @@
                 android:id="@+id/matchContainer1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
         </ScrollView>
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/containerMatchNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/containerMatchNext"
-        android:orientation="horizontal"
-        android:layout_below="@+id/containerMatchPrevious">
+        android:layout_below="@+id/containerMatchPrevious"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,12 +77,12 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
                 android:text="@string/Home_next_matches"
-                android:textSize="18sp"
                 android:textColor="@color/text_main"
-                android:layout_gravity="start"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                 android:id="@+id/leagueContainer2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
         </ScrollView>
 
         <ScrollView
@@ -114,7 +114,7 @@
                 android:id="@+id/matchContainer2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
         </ScrollView>
 
 
