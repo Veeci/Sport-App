@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
+    id("kotlin-parcelize")
 }
 
 android {
@@ -53,4 +55,8 @@ dependencies {
 
     //Indicator
     implementation("com.tbuonomo:dotsindicator:5.0")
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 }
