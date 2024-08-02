@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class LEAGUEMATCH_PREVIOUS(
+data class LEAGUEMATCH(
     @SerializedName("idEvent") val idEvent: String = "",
     @SerializedName("idSoccerXML") val idSoccerXML: String? = null,
     @SerializedName("idAPIfootball") val idAPIfootball: String = "",
@@ -57,6 +57,6 @@ data class LEAGUEMATCH_PREVIOUS(
     @SerializedName("strLocked") val strLocked: String = ""
 ) : Parcelable
 
-data class LeagueMatches_PreviousResponse(
-    @SerializedName("1") val leagueMatchesPrevious: List<LEAGUEMATCH_PREVIOUS>
+data class LeagueMatchesResponse(
+    @SerializedName("1") val leagueMatches: List<LEAGUEMATCH>
 )

@@ -9,11 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.sportapp.R
-import com.example.sportapp.data.model.LEAGUEMATCH_PREVIOUS
+import com.example.sportapp.data.model.LEAGUEMATCH
 
 class MatchAdapter : RecyclerView.Adapter<MatchAdapter.MatchViewHolder>()
 {
-    private var matches: List<LEAGUEMATCH_PREVIOUS> = listOf()
+    private var matches: List<LEAGUEMATCH> = listOf()
 
     class MatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     {
@@ -25,7 +25,7 @@ class MatchAdapter : RecyclerView.Adapter<MatchAdapter.MatchViewHolder>()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchAdapter.MatchViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_match, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_match_prev, parent, false)
         return MatchViewHolder(view)
     }
 
@@ -41,7 +41,7 @@ class MatchAdapter : RecyclerView.Adapter<MatchAdapter.MatchViewHolder>()
     override fun getItemCount() = matches.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateMatches(matches: List<LEAGUEMATCH_PREVIOUS>)
+    fun updateMatches(matches: List<LEAGUEMATCH>)
     {
         this.matches = matches
         notifyDataSetChanged()

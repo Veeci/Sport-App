@@ -8,6 +8,10 @@ import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sportapp.R
 import com.example.sportapp.presentation.ViewPagerAdapter
+import com.example.sportapp.presentation.main.fragment.explore.ExploreFragment
+import com.example.sportapp.presentation.main.fragment.favourite.FavoriteFragment
+import com.example.sportapp.presentation.main.fragment.home.HomeFragment
+import com.example.sportapp.presentation.main.fragment.profile.ProfileFragment
 
 class MainViewPagerFragment : Fragment() {
 

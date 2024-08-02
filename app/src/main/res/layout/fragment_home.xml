@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.main.fragment.HomeFragment">
+    tools:context=".presentation.main.fragment.home.HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,11 +42,12 @@
 
             </LinearLayout>
 
-            <include
-                android:id="@+id/leagueMatchesPrevRV"
-                layout="@layout/recyclerview_leagues"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/leaguesPrev"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="true"
+                android:orientation="horizontal" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/matchesPrevContainer"
@@ -90,11 +91,12 @@
 
             </LinearLayout>
 
-            <include
-                android:id="@+id/leagueMatchesNextRV"
-                layout="@layout/recyclerview_leagues"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/leaguesNext"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="true"
+                android:orientation="horizontal" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/matchesNextContainer"

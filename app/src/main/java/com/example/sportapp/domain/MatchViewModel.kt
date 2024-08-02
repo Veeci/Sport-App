@@ -5,19 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.sportapp.data.model.LEAGUEMATCH_NEXT
-import com.example.sportapp.data.model.LEAGUEMATCH_PREVIOUS
+import com.example.sportapp.data.model.LEAGUEMATCH
 import com.example.sportapp.data.repository.MatchRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MatchViewModel(private val repository: MatchRepository): ViewModel()
 {
-    private val _matchesPrev = MutableLiveData<List<LEAGUEMATCH_PREVIOUS>>()
-    val matchesPrev: LiveData<List<LEAGUEMATCH_PREVIOUS>> get() = _matchesPrev
+    private val _matchesPrev = MutableLiveData<List<LEAGUEMATCH>>()
+    val matchesPrev: LiveData<List<LEAGUEMATCH>> get() = _matchesPrev
 
-    private val _matchesNext = MutableLiveData<List<LEAGUEMATCH_NEXT>>()
-    val matchesNext: LiveData<List<LEAGUEMATCH_NEXT>> get() = _matchesNext
+    private val _matchesNext = MutableLiveData<List<LEAGUEMATCH>>()
+    val matchesNext: LiveData<List<LEAGUEMATCH>> get() = _matchesNext
 
     fun fetchLeagueMatchesPrevious(idLeague: String)
     {
@@ -26,7 +25,7 @@ class MatchViewModel(private val repository: MatchRepository): ViewModel()
             try
             {
                 val response = repository.getLeagueMatchesPrevious(idLeague)
-                _matchesPrev.postValue(response.leagueMatchesPrevious)
+                _matchesPrev.postValue(response.leagueMatches)
             }
             catch (e: Exception)
             {
@@ -40,7 +39,7 @@ class MatchViewModel(private val repository: MatchRepository): ViewModel()
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = repository.getLeagueMatchesNext(idLeague)
-                _matchesNext.postValue(response.leagueMatchesNext)
+                _matchesNext.postValue(response.leagueMatches)
             }
             catch (e: Exception)
             {
