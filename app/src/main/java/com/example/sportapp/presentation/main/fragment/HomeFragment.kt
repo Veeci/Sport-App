@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sportapp.R
 import com.example.sportapp.data.api.apiService
 import com.example.sportapp.data.model.LEAGUE
 import com.example.sportapp.data.repository.LeagueRepository
 import com.example.sportapp.databinding.FragmentHomeBinding
 import com.example.sportapp.domain.LeagueViewModel
+import com.example.sportapp.presentation.main.adapter.LeagueAdapter
 
 class HomeFragment : Fragment() {
 
@@ -24,6 +26,8 @@ class HomeFragment : Fragment() {
     private val leagueViewModeL: LeagueViewModel by viewModels{
         LeagueViewModel.Factory(LeagueRepository(apiService))
     }
+
+    private lateinit var leagueAdapter: LeagueAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +41,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRecyclerView()
+
         leagueViewModeL.leagues.observe(viewLifecycleOwner, Observer { leagues ->
             displayLeagues(leagues)
         })
@@ -44,33 +50,31 @@ class HomeFragment : Fragment() {
         leagueViewModeL.fetchAllLeagues()
     }
 
-    @SuppressLint("ResourceAsColor")
+    private fun setupRecyclerView()
+    {
+        leagueAdapter = LeagueAdapter { league ->
+            onLeagueClick(league)
+        }
+
+        binding.leagueMatchesPrevRV.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = leagueAdapter
+        }
+
+        binding.leagueMatchesNextRV.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = leagueAdapter
+        }
+    }
+
+    private fun onLeagueClick(league: LEAGUE)
+    {
+
+    }
+
     private fun displayLeagues(leagues: List<LEAGUE>)
     {
-        val leagueContainer1 = binding.leagueContainer1
-        leagueContainer1.removeAllViews()
-
-        val leagueContainer2 = binding.leagueContainer2
-        leagueContainer2.removeAllViews()
-
-        for(league in leagues)
-        {
-            val textView1 = TextView(context).apply {
-                text = league.strLeague
-                textSize = 16f
-                setPadding(8, 8, 8, 8)
-                setTextColor(resources.getColor(R.color.text_main, resources.newTheme()))
-            }
-
-            val textView2 = TextView(context).apply {
-                text = league.strLeague
-                textSize = 16f
-                setPadding(8, 8, 8, 8)
-                setTextColor(resources.getColor(R.color.text_main, resources.newTheme()))
-            }
-            leagueContainer1.addView(textView1)
-            leagueContainer2.addView(textView2)
-        }
+        leagueAdapter.updateLeagues(leagues)
     }
 
     override fun onDestroyView() {
