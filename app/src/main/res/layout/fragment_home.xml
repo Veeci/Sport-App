@@ -42,29 +42,18 @@
 
             </LinearLayout>
 
-            <ScrollView
+            <include
+                android:id="@+id/leagueMatchesPrevRV"
+                layout="@layout/recyclerview_leagues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/matchesPrevContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/leagueMatchesPrevRV"
-                    android:orientation="horizontal"
-                    android:nestedScrollingEnabled="false"/>
-            </ScrollView>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/matchesPrevContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:nestedScrollingEnabled="false"/>
-            </ScrollView>
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
+                android:orientation="horizontal" />
 
         </LinearLayout>
 
@@ -72,9 +61,9 @@
             android:id="@+id/containerMatchNext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_below="@+id/containerMatchPrevious"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -101,29 +90,18 @@
 
             </LinearLayout>
 
-            <ScrollView
+            <include
+                android:id="@+id/leagueMatchesNextRV"
+                layout="@layout/recyclerview_leagues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/matchesNextContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/leagueMatchesNextRV"
-                    android:orientation="horizontal"
-                    android:nestedScrollingEnabled="false"/>
-            </ScrollView>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/matchesNextContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:nestedScrollingEnabled="false"/>
-            </ScrollView>
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
+                android:orientation="horizontal" />
 
         </LinearLayout>
 
