@@ -60,3 +60,7 @@ data class LEAGUEMATCH(
 data class LeagueMatchesResponse(
     @SerializedName("1") val leagueMatches: List<LEAGUEMATCH>
 )
+
+data class LeagueMatchDetailResponse(
+    @SerializedName("events") val leagueMatch: LEAGUEMATCH
+)

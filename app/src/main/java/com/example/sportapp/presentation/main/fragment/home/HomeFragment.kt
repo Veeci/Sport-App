@@ -1,15 +1,20 @@
 package com.example.sportapp.presentation.main.fragment.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sportapp.R
 import com.example.sportapp.data.api.apiService
 import com.example.sportapp.data.model.LEAGUE
+import com.example.sportapp.data.model.LEAGUEMATCH
 import com.example.sportapp.data.repository.LeagueRepository
 import com.example.sportapp.data.repository.MatchRepository
 import com.example.sportapp.databinding.FragmentHomeBinding
@@ -47,18 +52,18 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerViews()
+        setupRecyclerViews(view)
         observeViewModels()
 
         leagueViewModel.fetchAllLeagues()
     }
 
-    private fun setupRecyclerViews() {
+    private fun setupRecyclerViews(view: View) {
         leaguePrevAdapter = LeagueAdapter { onLeagueClickPrev(it) }
         leagueNextAdapter = LeagueAdapter { onLeagueClickNext(it) }
 
-        matchPrevAdapter = MatchAdapter()
-        matchNextAdapter = MatchAdapter()
+        matchPrevAdapter = MatchAdapter {onMatchClickPrev(it)}
+        matchNextAdapter = MatchAdapter{ onMatchClickNext(it) }
 
         binding.leaguesPrev.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -111,6 +116,19 @@ class HomeFragment : Fragment() {
 
     private fun onLeagueClickNext(league: LEAGUE) {
         matchViewModel.fetchLeagueMatchesNext(league.idLeague)
+    }
+
+    private fun onMatchClickPrev(match: LEAGUEMATCH)
+    {
+        matchViewModel.setIdEventRemember(match.idEvent)
+        findNavController().navigate(R.id.action_homeFragment_to_matchDetailFragment)
+    }
+
+    private fun onMatchClickNext(match: LEAGUEMATCH)
+    {
+//        matchViewModel.setIdEventRemember(match.idEvent)
+//        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_matchDetailFragment)
+        Log.d("Navigation", "Current Destination: ${findNavController().currentDestination?.id}")
     }
 
     override fun onDestroyView() {

@@ -12,11 +12,22 @@ import kotlinx.coroutines.launch
 
 class MatchViewModel(private val repository: MatchRepository): ViewModel()
 {
+    private val _idEventRemember = MutableLiveData<String>()
+    val idEventRemember: LiveData<String> get() = _idEventRemember
+
+    fun setIdEventRemember(idEvent: String)
+    {
+        _idEventRemember.value = idEvent
+    }
+
     private val _matchesPrev = MutableLiveData<List<LEAGUEMATCH>>()
     val matchesPrev: LiveData<List<LEAGUEMATCH>> get() = _matchesPrev
 
     private val _matchesNext = MutableLiveData<List<LEAGUEMATCH>>()
     val matchesNext: LiveData<List<LEAGUEMATCH>> get() = _matchesNext
+
+    private val _matchDetail = MutableLiveData<LEAGUEMATCH>()
+    val matchDetail: LiveData<LEAGUEMATCH> get() = _matchDetail
 
     fun fetchLeagueMatchesPrevious(idLeague: String)
     {
@@ -40,6 +51,20 @@ class MatchViewModel(private val repository: MatchRepository): ViewModel()
             try {
                 val response = repository.getLeagueMatchesNext(idLeague)
                 _matchesNext.postValue(response.leagueMatches)
+            }
+            catch (e: Exception)
+            {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun fetchMatchDetail(idEvent: String)
+    {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = repository.getMatchDetail(idEvent)
+                _matchDetail.postValue(response.leagueMatch)
             }
             catch (e: Exception)
             {

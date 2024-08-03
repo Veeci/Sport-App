@@ -2,7 +2,6 @@ package com.example.sportapp.presentation.main.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,12 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.sportapp.R
 import com.example.sportapp.data.model.LEAGUEMATCH
+import com.example.sportapp.databinding.ItemMatchBinding
+import com.example.sportapp.domain.MatchViewModel
 
-class MatchAdapter : RecyclerView.Adapter<MatchAdapter.MatchViewHolder>()
+class MatchAdapter(private val onMatchClick: (LEAGUEMATCH) -> Unit) : RecyclerView.Adapter<MatchAdapter.MatchViewHolder>()
 {
     private var matches: List<LEAGUEMATCH> = listOf()
 
-    class MatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class MatchViewHolder(val binding: ItemMatchBinding) : RecyclerView.ViewHolder(binding.root)
     {
         val strThumb: ImageView = itemView.findViewById<ImageView>(R.id.strThumb)
         val strEventAlternate: TextView = itemView.findViewById<TextView>(R.id.strEventAlternate)
@@ -25,17 +26,23 @@ class MatchAdapter : RecyclerView.Adapter<MatchAdapter.MatchViewHolder>()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchAdapter.MatchViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_match_prev, parent, false)
-        return MatchViewHolder(view)
+        val binding = ItemMatchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MatchViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MatchAdapter.MatchViewHolder, position: Int) {
         val match = matches[position]
-        holder.strThumb.load(match.strThumb)
-        holder.strEventAlternate.text = match.strEvent
-        holder.dateEvent.text = match.dateEvent
-        holder.intHomeScore.text = match.intHomeScore
-        holder.intAwayScore.text = match.intAwayScore
+        holder.binding.apply {
+            strThumb.load(match.strThumb)
+            strEventAlternate.text = match.strEvent
+            dateEvent.text = match.dateEvent
+            intHomeScore.text = match.intHomeScore
+            intAwayScore.text = match.intAwayScore
+
+            root.setOnClickListener {
+                onMatchClick(match)
+            }
+        }
     }
 
     override fun getItemCount() = matches.size

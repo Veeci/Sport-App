@@ -1,5 +1,6 @@
 package com.example.sportapp.data.api
 
+import com.example.sportapp.data.model.LeagueMatchDetailResponse
 import com.example.sportapp.data.model.LeagueMatchesResponse
 import com.example.sportapp.data.model.LeaguesResponse
 import retrofit2.Retrofit
@@ -21,6 +22,9 @@ interface APIService
 
     @GET("/api/v2/json/3/schedual/next/league/{idLeague}")
     suspend fun getLeagueMatchesNext(@Path("idLeague") idLeague: String): LeagueMatchesResponse
+
+    @GET("/api/v2/json/3/lookup/event/{idEvent}")
+    suspend fun getMatchDetail(@Path("idEvent") idEvent: String): LeagueMatchDetailResponse
     //----------------------------------------------------------------------------------------------
 }
 
