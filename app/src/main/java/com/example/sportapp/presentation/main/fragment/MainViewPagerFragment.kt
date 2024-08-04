@@ -24,7 +24,7 @@ class MainViewPagerFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_main_view_pager, container, false)
 
         val fragmentList = arrayListOf<Fragment>(
-            createNavHostFragment(R.navigation.navigation_home_main),
+            createNavHostFragment(R.navigation.navigation_main_home),
             HomeFragment(),
             ExploreFragment(),
             FavoriteFragment(),

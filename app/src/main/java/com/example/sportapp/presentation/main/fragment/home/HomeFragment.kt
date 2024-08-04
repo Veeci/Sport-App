@@ -126,9 +126,8 @@ class HomeFragment : Fragment() {
 
     private fun onMatchClickNext(match: LEAGUEMATCH)
     {
-//        matchViewModel.setIdEventRemember(match.idEvent)
-//        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_matchDetailFragment)
-        Log.d("Navigation", "Current Destination: ${findNavController().currentDestination?.id}")
+        matchViewModel.setIdEventRemember(match.idEvent)
+        findNavController().navigate(R.id.action_homeFragment_to_matchDetailFragment)
     }
 
     override fun onDestroyView() {

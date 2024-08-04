@@ -56,7 +56,6 @@ class MatchDetailFragment : Fragment() {
         matchViewModel.idEventRemember.observe(viewLifecycleOwner, Observer { idEvent ->
             if(idEvent != null)
             {
-                Log.d("MatchDetailFragment", "idEventRemember: $idEvent")
                 matchViewModel.fetchMatchDetail(idEvent)
             }
             else
