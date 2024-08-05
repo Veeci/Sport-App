@@ -62,5 +62,5 @@ data class LeagueMatchesResponse(
 )
 
 data class LeagueMatchDetailResponse(
-    @SerializedName("events") val leagueMatch: LEAGUEMATCH
+    @SerializedName("events") val leagueMatch: List<LEAGUEMATCH>
 )

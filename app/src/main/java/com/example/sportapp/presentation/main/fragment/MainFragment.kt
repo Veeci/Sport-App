@@ -5,26 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.NavigationRes
-import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sportapp.R
+import com.example.sportapp.databinding.FragmentMainBinding
 import com.example.sportapp.presentation.ViewPagerAdapter
 import com.example.sportapp.presentation.main.fragment.explore.ExploreFragment
 import com.example.sportapp.presentation.main.fragment.favourite.FavoriteFragment
 import com.example.sportapp.presentation.main.fragment.home.HomeFragment
 import com.example.sportapp.presentation.main.fragment.profile.ProfileFragment
 
-class MainViewPagerFragment : Fragment() {
+class MainFragment : Fragment() {
+
+    private var _binding: FragmentMainBinding?= null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_main_view_pager, container, false)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
 
         val fragmentList = arrayListOf<Fragment>(
-            createNavHostFragment(R.navigation.navigation_main_home),
             HomeFragment(),
             ExploreFragment(),
             FavoriteFragment(),
@@ -37,13 +38,12 @@ class MainViewPagerFragment : Fragment() {
             lifecycle
         )
 
-        val viewPager = view.findViewById<ViewPager2>(R.id.mainViewPager)
+        val viewPager = binding.mainViewPager
         viewPager.adapter = adapter
 
-        return view
+        binding.mainViewPager.isUserInputEnabled = false
+
+        return binding.root
     }
 
-    private fun createNavHostFragment(@NavigationRes navGraphId: Int): Fragment{
-        return NavHostFragment.create(navGraphId)
-    }
 }

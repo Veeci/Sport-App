@@ -3,14 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main"
-    app:startDestination="@id/mainViewPagerFragment">
+    app:startDestination="@id/mainFragment">
     <fragment
-        android:id="@+id/mainViewPagerFragment"
-        android:name="com.example.sportapp.presentation.main.fragment.MainViewPagerFragment"
-        android:label="MainViewPagerFragment" >
+        android:id="@+id/mainFragment"
+        android:name="com.example.sportapp.presentation.main.fragment.MainFragment"
+        android:label="MainFragment" >
         <action
-            android:id="@+id/action_mainViewPagerFragment_to_matchDetailFragment"
-            app:destination="@id/matchDetailFragment" />
+            android:id="@+id/action_mainFragment_to_matchDetailFragment"
+            app:destination="@id/matchDetailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/matchDetailFragment"
@@ -18,7 +20,9 @@
         android:label="fragment_match_detail"
         tools:layout="@layout/fragment_match_detail" >
         <action
-            android:id="@+id/action_matchDetailFragment3_to_mainViewPagerFragment"
-            app:destination="@id/mainViewPagerFragment" />
+            android:id="@+id/action_matchDetailFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
 </navigation>

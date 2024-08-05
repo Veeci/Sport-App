@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import com.example.sportapp.R
@@ -24,7 +26,7 @@ class MatchDetailFragment : Fragment() {
     private var _binding: FragmentMatchDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val matchViewModel: MatchViewModel by viewModels{
+    private val matchViewModel: MatchViewModel by activityViewModels{
         MatchViewModel.Factory(MatchRepository(apiService))
     }
 
@@ -46,6 +48,9 @@ class MatchDetailFragment : Fragment() {
         )
 
         binding.machDetailViewPager.adapter = adapter
+        binding.back.setOnClickListener {
+            findNavController().navigate(R.id.action_matchDetailFragment_to_mainFragment)
+        }
 
         return binding.root
     }
@@ -64,15 +69,8 @@ class MatchDetailFragment : Fragment() {
             }
         })
 
-        matchViewModel.matchDetail.observe(viewLifecycleOwner, Observer { match ->
-            if(match != null)
-            {
-                displayMatchDetail(match)
-            }
-            else
-            {
-                Log.e("MatchDetailFragment", "matchDetail is null")
-            }
+        matchViewModel.matchDetail.observe(viewLifecycleOwner, Observer { matchList ->
+            displayMatchDetail(matchList[0])
         })
     }
 

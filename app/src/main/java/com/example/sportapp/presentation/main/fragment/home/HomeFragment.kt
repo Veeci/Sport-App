@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -32,7 +33,7 @@ class HomeFragment : Fragment() {
         LeagueViewModel.Factory(LeagueRepository(apiService))
     }
 
-    private val matchViewModel: MatchViewModel by viewModels {
+    private val matchViewModel: MatchViewModel by activityViewModels {
         MatchViewModel.Factory(MatchRepository(apiService))
     }
 
@@ -121,13 +122,13 @@ class HomeFragment : Fragment() {
     private fun onMatchClickPrev(match: LEAGUEMATCH)
     {
         matchViewModel.setIdEventRemember(match.idEvent)
-        findNavController().navigate(R.id.action_homeFragment_to_matchDetailFragment)
+        findNavController().navigate(R.id.action_mainFragment_to_matchDetailFragment)
     }
 
     private fun onMatchClickNext(match: LEAGUEMATCH)
     {
         matchViewModel.setIdEventRemember(match.idEvent)
-        findNavController().navigate(R.id.action_homeFragment_to_matchDetailFragment)
+        findNavController().navigate(R.id.action_mainFragment_to_matchDetailFragment)
     }
 
     override fun onDestroyView() {

@@ -26,8 +26,8 @@ class MatchViewModel(private val repository: MatchRepository): ViewModel()
     private val _matchesNext = MutableLiveData<List<LEAGUEMATCH>>()
     val matchesNext: LiveData<List<LEAGUEMATCH>> get() = _matchesNext
 
-    private val _matchDetail = MutableLiveData<LEAGUEMATCH>()
-    val matchDetail: LiveData<LEAGUEMATCH> get() = _matchDetail
+    private val _matchDetail = MutableLiveData<List<LEAGUEMATCH>>()
+    val matchDetail: LiveData<List<LEAGUEMATCH>> get() = _matchDetail
 
     fun fetchLeagueMatchesPrevious(idLeague: String)
     {
