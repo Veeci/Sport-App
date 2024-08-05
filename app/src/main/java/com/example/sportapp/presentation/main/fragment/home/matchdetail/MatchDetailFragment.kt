@@ -19,6 +19,8 @@ import com.example.sportapp.data.repository.MatchRepository
 import com.example.sportapp.databinding.FragmentMatchDetailBinding
 import com.example.sportapp.domain.MatchViewModel
 import com.example.sportapp.presentation.ViewPagerAdapter
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class MatchDetailFragment : Fragment() {
@@ -29,6 +31,9 @@ class MatchDetailFragment : Fragment() {
     private val matchViewModel: MatchViewModel by activityViewModels{
         MatchViewModel.Factory(MatchRepository(apiService))
     }
+
+    private lateinit var viewPager: ViewPager2
+    private lateinit var tabLayout: TabLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +52,6 @@ class MatchDetailFragment : Fragment() {
             lifecycle
         )
 
-        binding.machDetailViewPager.adapter = adapter
         binding.back.setOnClickListener {
             findNavController().navigate(R.id.action_matchDetailFragment_to_mainFragment)
         }
@@ -57,6 +61,19 @@ class MatchDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        tabLayout = binding.matchDetailTabLayout
+        viewPager = binding.matchDetailViewPager
+
+        val adapter = MatchDetailPagerAdapter(this)
+        viewPager.adapter = adapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            when (position) {
+                0 -> tab.text = "Stats"
+                1 -> tab.text = "Lineup"
+            }
+        }.attach()
 
         matchViewModel.idEventRemember.observe(viewLifecycleOwner, Observer { idEvent ->
             if(idEvent != null)

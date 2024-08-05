@@ -40,8 +40,23 @@ class MainFragment : Fragment() {
 
         val viewPager = binding.mainViewPager
         viewPager.adapter = adapter
-
         binding.mainViewPager.isUserInputEnabled = false
+
+        binding.menuBar.homeSection.setOnClickListener {
+            viewPager.currentItem = 0
+        }
+
+        binding.menuBar.exploreSection.setOnClickListener {
+            viewPager.currentItem = 1
+        }
+
+        binding.menuBar.favSection.setOnClickListener {
+            viewPager.currentItem = 2
+        }
+
+        binding.menuBar.profileSection.setOnClickListener {
+            viewPager.currentItem = 3
+        }
 
         return binding.root
     }
