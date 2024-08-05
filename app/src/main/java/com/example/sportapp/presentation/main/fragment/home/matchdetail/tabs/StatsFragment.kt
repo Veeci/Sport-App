@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sportapp.R
 import com.example.sportapp.data.api.apiService
 import com.example.sportapp.data.model.STATS
+import com.example.sportapp.data.model.TIMELINE
 import com.example.sportapp.data.repository.MatchRepository
 import com.example.sportapp.databinding.FragmentStatsBinding
 import com.example.sportapp.domain.MatchViewModel
 import com.example.sportapp.presentation.main.adapter.StatAdapter
+import com.example.sportapp.presentation.main.adapter.TimelineAdapter
 
 class StatsFragment : Fragment() {
 
@@ -26,6 +28,7 @@ class StatsFragment : Fragment() {
     }
 
     private lateinit var statAdapter: StatAdapter
+    private lateinit var timelineAdapter: TimelineAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +37,16 @@ class StatsFragment : Fragment() {
         _binding = FragmentStatsBinding.inflate(inflater, container, false)
 
         statAdapter = StatAdapter { onStatClick(it) }
+        timelineAdapter = TimelineAdapter { onTimelineClick(it) }
 
         binding.matchStatsRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = statAdapter
+        }
+
+        binding.matchTimelineRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = timelineAdapter
         }
 
         return binding.root
@@ -57,10 +66,26 @@ class StatsFragment : Fragment() {
             }
         })
 
+        matchViewModel.matchTimeline.observe(viewLifecycleOwner, Observer { timeLine ->
+            if(timeLine.isNotEmpty())
+            {
+                timelineAdapter.updateTimeline(timeLine)
+            }
+            else
+            {
+                timelineAdapter.updateTimeline(emptyList())
+            }
+        })
+
         matchViewModel.fetchMatchStats(matchViewModel.idEventRemember.value.toString())
+        matchViewModel.fetchMatchTimeline(matchViewModel.idEventRemember.value.toString())
     }
 
     private fun onStatClick(stat: STATS) {
+
+    }
+
+    private fun onTimelineClick(timeline: TIMELINE) {
 
     }
 

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="5"
+    android:background="@color/theme_main"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/intTime"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:text="20"
+        android:textColor="@color/text_main"
+        android:textSize="16sp"
+        android:textAlignment="center"/>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_weight="0.5"
+        android:src="@drawable/baseline_sports_24"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:weightSum="3">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/strPlayer"
+            android:textColor="@color/text_main"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            tools:ignore="NestedWeights" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/strTimeline"
+                tools:ignore="ContentDescription"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/strAssist"
+            android:textColor="@color/text_main"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            tools:ignore="NestedWeights" />
+
+    </LinearLayout>
+
+</LinearLayout>
