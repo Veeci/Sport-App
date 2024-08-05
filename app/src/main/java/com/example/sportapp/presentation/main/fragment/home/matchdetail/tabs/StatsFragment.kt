@@ -1,4 +1,4 @@
-package com.example.sportapp.presentation.main.fragment.home.matchdetail
+package com.example.sportapp.presentation.main.fragment.home.matchdetail.tabs
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

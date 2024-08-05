@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -19,6 +18,9 @@ import com.example.sportapp.data.repository.MatchRepository
 import com.example.sportapp.databinding.FragmentMatchDetailBinding
 import com.example.sportapp.domain.MatchViewModel
 import com.example.sportapp.presentation.ViewPagerAdapter
+import com.example.sportapp.presentation.main.fragment.home.matchdetail.tabs.LineupFragment
+import com.example.sportapp.presentation.main.fragment.home.matchdetail.tabs.MatchDetailPagerAdapter
+import com.example.sportapp.presentation.main.fragment.home.matchdetail.tabs.StatsFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -79,6 +81,7 @@ class MatchDetailFragment : Fragment() {
             if(idEvent != null)
             {
                 matchViewModel.fetchMatchDetail(idEvent)
+                matchViewModel.fetchMatchLineups(idEvent)
             }
             else
             {

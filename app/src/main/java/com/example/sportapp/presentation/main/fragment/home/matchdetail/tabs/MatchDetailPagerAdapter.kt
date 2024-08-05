@@ -1,4 +1,4 @@
-package com.example.sportapp.presentation.main.fragment.home.matchdetail
+package com.example.sportapp.presentation.main.fragment.home.matchdetail.tabs
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
