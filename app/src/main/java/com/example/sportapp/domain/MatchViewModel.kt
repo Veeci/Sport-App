@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.sportapp.data.model.LEAGUEMATCH
 import com.example.sportapp.data.model.LINEUP
+import com.example.sportapp.data.model.STATS
 import com.example.sportapp.data.repository.MatchRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,6 +36,9 @@ class MatchViewModel(private val repository: MatchRepository): ViewModel()
 
     private val _matchLineUps = MutableLiveData<List<LINEUP>>()
     val matchDetailLineups: LiveData<List<LINEUP>> get() = _matchLineUps
+
+    private val _matchStats = MutableLiveData<List<STATS>>()
+    val matchStats: LiveData<List<STATS>> get() = _matchStats
 
     fun fetchLeagueMatchesPrevious(idLeague: String)
     {
@@ -94,6 +98,20 @@ class MatchViewModel(private val repository: MatchRepository): ViewModel()
             }
             finally {
                 _loading.postValue(false)
+            }
+        }
+    }
+
+    fun fetchMatchStats(idEvent: String)
+    {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = repository.getMatchStats(idEvent)
+                _matchStats.postValue(response.eventStats)
+            }
+            catch (e: Exception)
+            {
+                e.printStackTrace()
             }
         }
     }

@@ -4,6 +4,7 @@ import com.example.sportapp.data.model.LeagueMatchDetailResponse
 import com.example.sportapp.data.model.LeagueMatchesResponse
 import com.example.sportapp.data.model.LeaguesResponse
 import com.example.sportapp.data.model.LineupRespond
+import com.example.sportapp.data.model.StatsRespond
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
@@ -29,6 +30,9 @@ interface APIService
 
     @GET("/api/v2/json/3/lookup/event_lineup/{idEvent}")
     suspend fun getMatchLineups(@Path("idEvent") idEvent: String): LineupRespond
+
+    @GET("/api/v2/json/3/lookup/event_stats/{idEvent}")
+    suspend fun getMatchStats(@Path("idEvent") idEvent: String): StatsRespond
     //----------------------------------------------------------------------------------------------
 }
 
