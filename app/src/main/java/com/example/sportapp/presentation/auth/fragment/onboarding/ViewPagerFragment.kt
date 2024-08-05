@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.example.sportapp.R
+import com.example.sportapp.presentation.ViewPagerAdapter
 import com.example.sportapp.presentation.auth.fragment.onboarding.screen.FirstScreen
 import com.example.sportapp.presentation.auth.fragment.onboarding.screen.SecondScreen
 import com.example.sportapp.presentation.auth.fragment.onboarding.screen.ThirdScreen

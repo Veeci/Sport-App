@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/top_bar"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:padding="20dp"
+android:gravity="top">
+
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="@string/Home_footie"
+    android:textColor="@color/text_main"
+    android:textSize="22sp"
+    android:textStyle="italic"/>
+
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:contentDescription="@string/Home_search"
+    android:src="@drawable/home_search_ic" />
+
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:src="@drawable/home_noti_ic"
+    android:contentDescription="@string/Home_search"
+    android:layout_marginStart="10dp"/>
+
+</LinearLayout>

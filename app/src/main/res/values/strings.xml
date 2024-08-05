@@ -13,7 +13,7 @@
     <string name="onboarding_stable_and_secured">Stable and Secured</string>
     <string name="onboarding_text3">Browse for teams and matches securely and safely</string>
     <string name="onboarding_lets_get_started">Let\'s Get Started</string>
-    
+
     <!--Login-->
     <string name="Login_welcome_back">Welcome back,</string>
     <string name="Login_text">Please login to enjoy full feature</string>
@@ -34,6 +34,17 @@
     <string name="Signup_or_register_with">Or register with</string>
     <string name="Signup_have_an_account">Have an account?</string>
     <string name="Signup_login">Login</string>
+
+    <!--Bottom menubar-->
+    <string name="Home_home">Home</string>
+    <string name="Home_explore">Explore</string>
+    <string name="Home_fav">Favorite</string>
+    <string name="Home_profile">Profile</string>
+    <string name="Home_search">search</string>
+    <string name="Home_footie">Footie</string>
+    <string name="Home_next_matches">Next matches</string>
+    <string name="Home_see_all">See All</string>
+    <string name="Home_latest_results_by_league">Latest results by league</string>
 
 
 </resources>

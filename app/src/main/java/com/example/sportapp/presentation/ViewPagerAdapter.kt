@@ -1,4 +1,4 @@
-package com.example.sportapp.presentation.auth.fragment.onboarding
+package com.example.sportapp.presentation
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
