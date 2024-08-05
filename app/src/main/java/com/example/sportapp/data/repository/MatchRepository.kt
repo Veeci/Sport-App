@@ -10,4 +10,5 @@ class MatchRepository(private val apiService: APIService)
     suspend fun getMatchLineups(idEvent: String) = apiService.getMatchLineups(idEvent)
     suspend fun getMatchStats(idEvent: String) = apiService.getMatchStats(idEvent)
     suspend fun getMatchTimeline(idEvent: String) = apiService.getMatchTimeline(idEvent)
+    suspend fun getMatchHighlights(idEvent: String) = apiService.getMatchHighlights(idEvent)
 }

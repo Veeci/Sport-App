@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.main.fragment.home.matchdetail.tabs.StatsFragment"
     android:orientation="vertical"
     android:padding="5dp">
@@ -32,5 +33,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/matchStatsRecyclerView"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_main"
+        android:textSize="18sp"
+        android:text="Highlights"
+        android:layout_marginTop="20dp"/>
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youtube_player_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:autoPlay="true"
+        app:videoId=""/>
 
 </LinearLayout>

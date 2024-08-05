@@ -1,5 +1,6 @@
 package com.example.sportapp.data.api
 
+import com.example.sportapp.data.model.HighlightRespond
 import com.example.sportapp.data.model.LeagueMatchDetailResponse
 import com.example.sportapp.data.model.LeagueMatchesResponse
 import com.example.sportapp.data.model.LeaguesResponse
@@ -35,8 +36,11 @@ interface APIService
     @GET("/api/v2/json/3/lookup/event_stats/{idEvent}")
     suspend fun getMatchStats(@Path("idEvent") idEvent: String): StatsRespond
 
-    @GET("/api/v2/json/3/lookup/event_timeline/{iEvent}")
-    suspend fun getMatchTimeline(@Path("iEvent") idEvent: String): TimelineRespond
+    @GET("/api/v2/json/3/lookup/event_timeline/{idEvent}")
+    suspend fun getMatchTimeline(@Path("idEvent") idEvent: String): TimelineRespond
+
+    @GET("/api/v2/json/3/lookup/event_highlights/{idEvent}")
+    suspend fun getMatchHighlights(@Path("idEvent") idEvent: String): HighlightRespond
     //----------------------------------------------------------------------------------------------
 }
 

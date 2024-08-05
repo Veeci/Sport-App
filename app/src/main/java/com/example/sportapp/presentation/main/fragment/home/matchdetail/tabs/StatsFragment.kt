@@ -17,6 +17,9 @@ import com.example.sportapp.databinding.FragmentStatsBinding
 import com.example.sportapp.domain.MatchViewModel
 import com.example.sportapp.presentation.main.adapter.StatAdapter
 import com.example.sportapp.presentation.main.adapter.TimelineAdapter
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 class StatsFragment : Fragment() {
 
@@ -29,6 +32,9 @@ class StatsFragment : Fragment() {
 
     private lateinit var statAdapter: StatAdapter
     private lateinit var timelineAdapter: TimelineAdapter
+
+    private var youTubePlayerView: YouTubePlayerView? = null
+    private var youTubePlayer: YouTubePlayer? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +54,9 @@ class StatsFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = timelineAdapter
         }
+
+        youTubePlayerView = binding.youtubePlayerView
+        lifecycle.addObserver(youTubePlayerView!!)
 
         return binding.root
     }
@@ -77,8 +86,32 @@ class StatsFragment : Fragment() {
             }
         })
 
+        matchViewModel.matchHighlights.observe(viewLifecycleOwner, Observer { highlights ->
+            if(highlights.isNotEmpty())
+            {
+                val highlight = highlights[0]
+                val videoId = extractYoutubeVideoId(highlight.strVideo)
+                videoId?.let {
+                    youTubePlayer?.loadVideo(it, 0f)
+                }
+            }
+        })
+
+        youTubePlayerView?.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                this@StatsFragment.youTubePlayer = youTubePlayer
+            }
+        })
+
         matchViewModel.fetchMatchStats(matchViewModel.idEventRemember.value.toString())
         matchViewModel.fetchMatchTimeline(matchViewModel.idEventRemember.value.toString())
+        matchViewModel.fetchMatchHighlights(matchViewModel.idEventRemember.value.toString())
+    }
+
+    private fun extractYoutubeVideoId(strVideo: String): String? {
+        val regex = Regex("(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?v%3D|watch\\?vi=|watch\\?vi%3D|%2Fvideos%2F|embed%2F|youtu.be%2F|\\/v%2F)[^#&?\\n]*")
+        val matchResult = regex.find(strVideo)
+        return matchResult?.value
     }
 
     private fun onStatClick(stat: STATS) {

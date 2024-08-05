@@ -83,6 +83,8 @@ class MatchDetailFragment : Fragment() {
                 matchViewModel.fetchMatchDetail(idEvent)
                 matchViewModel.fetchMatchLineups(idEvent)
                 matchViewModel.fetchMatchStats(idEvent)
+                matchViewModel.fetchMatchTimeline(idEvent)
+                matchViewModel.fetchMatchHighlights(idEvent)
             }
             else
             {

@@ -70,4 +70,7 @@ dependencies {
 
     //Coil
     implementation(libs.coil)
+
+    //Youtube
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
 }
