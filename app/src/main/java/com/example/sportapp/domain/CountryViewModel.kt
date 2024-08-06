@@ -5,23 +5,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.sportapp.data.model.COMPETITION
-import com.example.sportapp.data.repository.CompetitionRepository
+import com.example.sportapp.data.model.COUNTRY
+import com.example.sportapp.data.repository.CountryRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CompetitionViewModel(private val repository: CompetitionRepository): ViewModel()
+class CountryViewModel(private val repository: CountryRepository): ViewModel()
 {
-    private val _competitions = MutableLiveData<List<COMPETITION>>()
-    val competitions: LiveData<List<COMPETITION>> get() = _competitions
+    private val _countries = MutableLiveData<List<COUNTRY>>()
+    val countries: LiveData<List<COUNTRY>> get() = _countries
 
-    fun fetchAllCompetitions()
+    fun fetchAllCountries()
     {
         viewModelScope.launch(Dispatchers.IO) {
             try
             {
-                val response = repository.getAllCompetitions()
-                _competitions.postValue(response.countries)
+                val response = repository.getAllCountries()
+                _countries.postValue(response.countries)
             }
             catch (e: Exception)
             {
@@ -30,12 +30,12 @@ class CompetitionViewModel(private val repository: CompetitionRepository): ViewM
         }
     }
 
-    class Factory(private val repository: CompetitionRepository): ViewModelProvider.Factory
+    class Factory(private val repository: CountryRepository): ViewModelProvider.Factory
     {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if(modelClass.isAssignableFrom(CompetitionViewModel::class.java)) {
+            if(modelClass.isAssignableFrom(CountryViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return CompetitionViewModel(repository) as T
+                return CountryViewModel(repository) as T
             }
 
             throw IllegalArgumentException("Unknown ViewModel class")

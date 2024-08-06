@@ -1,6 +1,7 @@
 package com.example.sportapp.data.api
 
-import com.example.sportapp.data.model.CompetitionRespond
+import com.example.sportapp.data.model.CompetitionLeaguesResponse
+import com.example.sportapp.data.model.CountryRespond
 import com.example.sportapp.data.model.HighlightRespond
 import com.example.sportapp.data.model.LeagueMatchDetailResponse
 import com.example.sportapp.data.model.LeagueMatchesResponse
@@ -10,9 +11,9 @@ import com.example.sportapp.data.model.StatsRespond
 import com.example.sportapp.data.model.TimelineRespond
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 private val retrofit = Retrofit.Builder().baseUrl("https://www.thesportsdb.com/").addConverterFactory(GsonConverterFactory.create()).build()
 
@@ -46,9 +47,10 @@ interface APIService
 
     //APIs of Explore screen-----------------------------------------------------------------------
     @GET("/api/v1/json/3/all_countries.php")
-    suspend fun getAllCompetitions(): CompetitionRespond
+    suspend fun getAllCountries(): CountryRespond
 
-
+    @GET("/api/v1/json/3/search_all_leagues.php")
+    suspend fun getCompetitionsByCountry(@Query("c") name_en: String): CompetitionLeaguesResponse
     //----------------------------------------------------------------------------------------------
 }
 

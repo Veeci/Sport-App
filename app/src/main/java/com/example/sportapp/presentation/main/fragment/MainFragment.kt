@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager2.widget.ViewPager2
-import com.example.sportapp.R
 import com.example.sportapp.databinding.FragmentMainBinding
 import com.example.sportapp.presentation.ViewPagerAdapter
 import com.example.sportapp.presentation.main.fragment.explore.ExploreFragment
@@ -61,4 +59,8 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
