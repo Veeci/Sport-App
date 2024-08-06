@@ -110,8 +110,13 @@ class StatsFragment : Fragment() {
         if (youTubePlayer != null && videoId != null) {
             Log.d("StatsFragment", "Loading video with ID: $videoId")
             youTubePlayer?.loadVideo(videoId!!, 0f)
+            youTubePlayerView?.visibility = View.VISIBLE
+            binding.matchHighlightsTV.visibility = View.VISIBLE
+            binding.strThumb.visibility = View.GONE
+            binding.matchPosterTV.visibility = View.GONE
         } else {
             Log.d("StatsFragment", "YouTubePlayer or videoId is null")
+            displayThumbnail()
         }
     }
 
@@ -124,10 +129,10 @@ class StatsFragment : Fragment() {
     private fun displayThumbnail() {
         if(strThumb != null)
         {
-            binding.strThumb.visibility = View.VISIBLE
-            binding.matchPosterTV.visibility = View.VISIBLE
             youTubePlayerView?.visibility = View.GONE
             binding.matchHighlightsTV.visibility = View.GONE
+            binding.strThumb.visibility = View.VISIBLE
+            binding.matchPosterTV.visibility = View.VISIBLE
             Glide.with(this).load(strThumb).into(binding.strThumb)
         }
     }

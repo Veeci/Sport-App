@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -127,8 +128,7 @@ class HomeFragment : Fragment() {
 
     private fun onMatchClickNext(match: LEAGUEMATCH)
     {
-        matchViewModel.setIdEventRemember(match.idEvent)
-        findNavController().navigate(R.id.action_mainFragment_to_matchDetailFragment)
+        Toast.makeText(context, "This match result will be updated soon", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
