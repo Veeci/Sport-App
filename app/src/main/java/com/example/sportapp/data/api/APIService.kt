@@ -1,5 +1,6 @@
 package com.example.sportapp.data.api
 
+import com.example.sportapp.data.model.CompetitionRespond
 import com.example.sportapp.data.model.HighlightRespond
 import com.example.sportapp.data.model.LeagueMatchDetailResponse
 import com.example.sportapp.data.model.LeagueMatchesResponse
@@ -41,6 +42,13 @@ interface APIService
 
     @GET("/api/v2/json/3/lookup/event_highlights/{idEvent}")
     suspend fun getMatchHighlights(@Path("idEvent") idEvent: String): HighlightRespond
+    //----------------------------------------------------------------------------------------------
+
+    //APIs of Explore screen-----------------------------------------------------------------------
+    @GET("/api/v1/json/3/all_countries.php")
+    suspend fun getAllCompetitions(): CompetitionRespond
+
+
     //----------------------------------------------------------------------------------------------
 }
 

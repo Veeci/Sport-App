@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.main.fragment.explore.ExploreFragment">
+    tools:context=".presentation.main.fragment.explore.ExploreFragment"
+    android:background="@color/theme_main"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/theme_main"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="All Competitions"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            android:textColor="@color/text_main"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/countriesRecyclerView"
+            android:layout_marginTop="20dp"
+            android:nestedScrollingEnabled="false"
+            android:orientation="vertical"/>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

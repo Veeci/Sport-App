@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.sportapp.R
 import com.example.sportapp.data.api.apiService
 import com.example.sportapp.data.model.STATS
 import com.example.sportapp.data.model.TIMELINE
@@ -41,12 +40,25 @@ class StatsFragment : Fragment() {
     private var videoId: String? = null
     private var strThumb: String? = null
 
+    companion object {
+        private const val TAG = "StatsFragment"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentStatsBinding.inflate(inflater, container, false)
 
+        setupRecyclerViews()
+
+        youTubePlayerView = binding.youtubePlayerView
+        lifecycle.addObserver(youTubePlayerView!!)
+
+        return binding.root
+    }
+
+    private fun setupRecyclerViews() {
         statAdapter = StatAdapter { onStatClick(it) }
         timelineAdapter = TimelineAdapter { onTimelineClick(it) }
 
@@ -59,22 +71,25 @@ class StatsFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = timelineAdapter
         }
-
-        youTubePlayerView = binding.youtubePlayerView
-        lifecycle.addObserver(youTubePlayerView!!)
-
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observeViewModel()
+
+        matchViewModel.fetchMatchStats(matchViewModel.idEventRemember.value.toString())
+        matchViewModel.fetchMatchTimeline(matchViewModel.idEventRemember.value.toString())
+        matchViewModel.fetchMatchHighlights(matchViewModel.idEventRemember.value.toString())
+    }
+
+    private fun observeViewModel() {
         matchViewModel.matchStats.observe(viewLifecycleOwner, Observer { stats ->
-            statAdapter.updateStats(stats.ifEmpty { emptyList() })
+            statAdapter.updateStats(stats)
         })
 
-        matchViewModel.matchTimeline.observe(viewLifecycleOwner, Observer { timeLine ->
-            timelineAdapter.updateTimeline(timeLine.ifEmpty { emptyList() })
+        matchViewModel.matchTimeline.observe(viewLifecycleOwner, Observer { timeline ->
+            timelineAdapter.updateTimeline(timeline)
         })
 
         matchViewModel.matchHighlights.observe(viewLifecycleOwner, Observer { highlights ->
@@ -82,59 +97,56 @@ class StatsFragment : Fragment() {
                 val highlight = highlights[0]
                 videoId = extractYoutubeVideoId(highlight.strVideo)
                 strThumb = highlight.strThumb
-                Log.d("StatsFragment", "Video ID extracted: $videoId")
+                Log.d(TAG, "Video ID extracted: $videoId")
                 loadVideoIfReady()
             }
         })
 
         youTubePlayerView?.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                Log.d("StatsFragment", "YouTubePlayer is ready")
+                Log.d(TAG, "YouTubePlayer is ready")
                 this@StatsFragment.youTubePlayer = youTubePlayer
                 loadVideoIfReady()
             }
 
             override fun onError(youTubePlayer: YouTubePlayer, error: PlayerConstants.PlayerError) {
-                Log.e("StatsFragment", "YouTubePlayer error: $error")
+                Log.e(TAG, "YouTubePlayer error: $error")
                 displayThumbnail()
             }
         })
-
-        // Fetch data
-        matchViewModel.fetchMatchStats(matchViewModel.idEventRemember.value.toString())
-        matchViewModel.fetchMatchTimeline(matchViewModel.idEventRemember.value.toString())
-        matchViewModel.fetchMatchHighlights(matchViewModel.idEventRemember.value.toString())
     }
 
     private fun loadVideoIfReady() {
         if (youTubePlayer != null && videoId != null) {
-            Log.d("StatsFragment", "Loading video with ID: $videoId")
+            Log.d(TAG, "Loading video with ID: $videoId")
             youTubePlayer?.loadVideo(videoId!!, 0f)
-            youTubePlayerView?.visibility = View.VISIBLE
-            binding.matchHighlightsTV.visibility = View.VISIBLE
-            binding.strThumb.visibility = View.GONE
-            binding.matchPosterTV.visibility = View.GONE
+            showVideoPlayer()
         } else {
-            Log.d("StatsFragment", "YouTubePlayer or videoId is null")
+            Log.d(TAG, "YouTubePlayer or videoId is null")
             displayThumbnail()
         }
     }
 
     private fun extractYoutubeVideoId(strVideo: String): String? {
         val regex = Regex("(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?v%3D|watch\\?vi=|watch\\?vi%3D|%2Fvideos%2F|embed%2F|youtu.be%2F|\\/v%2F)[^#&?\\n]*")
-        val matchResult = regex.find(strVideo)
-        return matchResult?.value
+        return regex.find(strVideo)?.value
     }
 
     private fun displayThumbnail() {
-        if(strThumb != null)
-        {
+        strThumb?.let {
             youTubePlayerView?.visibility = View.GONE
             binding.matchHighlightsTV.visibility = View.GONE
             binding.strThumb.visibility = View.VISIBLE
             binding.matchPosterTV.visibility = View.VISIBLE
-            Glide.with(this).load(strThumb).into(binding.strThumb)
+            Glide.with(this).load(it).into(binding.strThumb)
         }
+    }
+
+    private fun showVideoPlayer() {
+        youTubePlayerView?.visibility = View.VISIBLE
+        binding.matchHighlightsTV.visibility = View.VISIBLE
+        binding.strThumb.visibility = View.GONE
+        binding.matchPosterTV.visibility = View.GONE
     }
 
     private fun onStatClick(stat: STATS) {
