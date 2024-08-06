@@ -42,7 +42,8 @@
         android:textColor="@color/text_main"
         android:textSize="18sp"
         android:text="Highlights"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:id="@+id/matchHighlightsTV"/>
 
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:id="@+id/youtube_player_view"
@@ -51,10 +52,21 @@
         app:autoPlay="false"
         android:layout_marginTop="10dp"/>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/matchPosterTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_main"
+        android:textSize="18sp"
+        android:text="Match Poster"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"/>
+
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/strThumb"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:visibility="gone"/>
 
 </LinearLayout>

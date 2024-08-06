@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.sportapp.R
 import com.example.sportapp.data.api.apiService
 import com.example.sportapp.data.model.STATS
@@ -38,6 +39,7 @@ class StatsFragment : Fragment() {
     private var youTubePlayerView: YouTubePlayerView? = null
     private var youTubePlayer: YouTubePlayer? = null
     private var videoId: String? = null
+    private var strThumb: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -79,6 +81,7 @@ class StatsFragment : Fragment() {
             if (highlights.isNotEmpty()) {
                 val highlight = highlights[0]
                 videoId = extractYoutubeVideoId(highlight.strVideo)
+                strThumb = highlight.strThumb
                 Log.d("StatsFragment", "Video ID extracted: $videoId")
                 loadVideoIfReady()
             }
@@ -93,6 +96,7 @@ class StatsFragment : Fragment() {
 
             override fun onError(youTubePlayer: YouTubePlayer, error: PlayerConstants.PlayerError) {
                 Log.e("StatsFragment", "YouTubePlayer error: $error")
+                displayThumbnail()
             }
         })
 
@@ -115,6 +119,17 @@ class StatsFragment : Fragment() {
         val regex = Regex("(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?v%3D|watch\\?vi=|watch\\?vi%3D|%2Fvideos%2F|embed%2F|youtu.be%2F|\\/v%2F)[^#&?\\n]*")
         val matchResult = regex.find(strVideo)
         return matchResult?.value
+    }
+
+    private fun displayThumbnail() {
+        if(strThumb != null)
+        {
+            binding.strThumb.visibility = View.VISIBLE
+            binding.matchPosterTV.visibility = View.VISIBLE
+            youTubePlayerView?.visibility = View.GONE
+            binding.matchHighlightsTV.visibility = View.GONE
+            Glide.with(this).load(strThumb).into(binding.strThumb)
+        }
     }
 
     private fun onStatClick(stat: STATS) {

@@ -69,6 +69,7 @@ class MatchDetailFragment : Fragment() {
 
         val adapter = MatchDetailPagerAdapter(this)
         viewPager.adapter = adapter
+        viewPager.offscreenPageLimit = 2
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
