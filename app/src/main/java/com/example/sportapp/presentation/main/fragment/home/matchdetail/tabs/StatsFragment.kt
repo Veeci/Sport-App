@@ -1,6 +1,7 @@
 package com.example.sportapp.presentation.main.fragment.home.matchdetail.tabs
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.example.sportapp.databinding.FragmentStatsBinding
 import com.example.sportapp.domain.MatchViewModel
 import com.example.sportapp.presentation.main.adapter.StatAdapter
 import com.example.sportapp.presentation.main.adapter.TimelineAdapter
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
@@ -35,6 +37,7 @@ class StatsFragment : Fragment() {
 
     private var youTubePlayerView: YouTubePlayerView? = null
     private var youTubePlayer: YouTubePlayer? = null
+    private var videoId: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,47 +68,47 @@ class StatsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         matchViewModel.matchStats.observe(viewLifecycleOwner, Observer { stats ->
-            if(stats.isNotEmpty())
-            {
-                statAdapter.updateStats(stats)
-            }
-            else
-            {
-                statAdapter.updateStats(emptyList())
-            }
+            statAdapter.updateStats(stats.ifEmpty { emptyList() })
         })
 
         matchViewModel.matchTimeline.observe(viewLifecycleOwner, Observer { timeLine ->
-            if(timeLine.isNotEmpty())
-            {
-                timelineAdapter.updateTimeline(timeLine)
-            }
-            else
-            {
-                timelineAdapter.updateTimeline(emptyList())
-            }
+            timelineAdapter.updateTimeline(timeLine.ifEmpty { emptyList() })
         })
 
         matchViewModel.matchHighlights.observe(viewLifecycleOwner, Observer { highlights ->
-            if(highlights.isNotEmpty())
-            {
+            if (highlights.isNotEmpty()) {
                 val highlight = highlights[0]
-                val videoId = extractYoutubeVideoId(highlight.strVideo)
-                videoId?.let {
-                    youTubePlayer?.loadVideo(it, 0f)
-                }
+                videoId = extractYoutubeVideoId(highlight.strVideo)
+                Log.d("StatsFragment", "Video ID extracted: $videoId")
+                loadVideoIfReady()
             }
         })
 
         youTubePlayerView?.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
+                Log.d("StatsFragment", "YouTubePlayer is ready")
                 this@StatsFragment.youTubePlayer = youTubePlayer
+                loadVideoIfReady()
+            }
+
+            override fun onError(youTubePlayer: YouTubePlayer, error: PlayerConstants.PlayerError) {
+                Log.e("StatsFragment", "YouTubePlayer error: $error")
             }
         })
 
+        // Fetch data
         matchViewModel.fetchMatchStats(matchViewModel.idEventRemember.value.toString())
         matchViewModel.fetchMatchTimeline(matchViewModel.idEventRemember.value.toString())
         matchViewModel.fetchMatchHighlights(matchViewModel.idEventRemember.value.toString())
+    }
+
+    private fun loadVideoIfReady() {
+        if (youTubePlayer != null && videoId != null) {
+            Log.d("StatsFragment", "Loading video with ID: $videoId")
+            youTubePlayer?.loadVideo(videoId!!, 0f)
+        } else {
+            Log.d("StatsFragment", "YouTubePlayer or videoId is null")
+        }
     }
 
     private fun extractYoutubeVideoId(strVideo: String): String? {
@@ -115,15 +118,16 @@ class StatsFragment : Fragment() {
     }
 
     private fun onStatClick(stat: STATS) {
-
+        // Handle stat click
     }
 
     private fun onTimelineClick(timeline: TIMELINE) {
-
+        // Handle timeline click
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        youTubePlayerView?.release()
         _binding = null
     }
 }
