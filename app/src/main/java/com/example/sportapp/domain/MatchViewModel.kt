@@ -1,5 +1,6 @@
 package com.example.sportapp.domain
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +14,7 @@ import com.example.sportapp.data.model.TIMELINE
 import com.example.sportapp.data.repository.MatchRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.math.log
 
 class MatchViewModel(private val repository: MatchRepository): ViewModel()
 {
@@ -25,6 +27,14 @@ class MatchViewModel(private val repository: MatchRepository): ViewModel()
     fun setIdEventRemember(idEvent: String)
     {
         _idEventRemember.value = idEvent
+    }
+
+    private val _idLeagueRemember = MutableLiveData<String>()
+    val idLeagueRemember: LiveData<String> get() = _idLeagueRemember
+
+    fun setIdLeagueRemember(idLeague: String)
+    {
+        _idLeagueRemember.value = idLeague
     }
 
     private val _matchesPrev = MutableLiveData<List<LEAGUEMATCH>>()
