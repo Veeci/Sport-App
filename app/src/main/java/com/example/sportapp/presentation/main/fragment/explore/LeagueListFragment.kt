@@ -18,6 +18,7 @@ import com.example.sportapp.data.repository.CompetitionLeagueRepository
 import com.example.sportapp.data.repository.LeagueRepository
 import com.example.sportapp.databinding.FragmentLeagueListBinding
 import com.example.sportapp.domain.CompetitionLeagueViewModel
+import com.example.sportapp.domain.LeagueTableViewModel
 import com.example.sportapp.domain.LeagueViewModel
 import com.example.sportapp.presentation.main.adapter.CompetitionLeagueAdapter
 import kotlinx.coroutines.awaitAll
@@ -33,6 +34,10 @@ class LeagueListFragment : Fragment() {
 
     private val leagueViewModel: LeagueViewModel by activityViewModels {
         LeagueViewModel.Factory(LeagueRepository(apiService))
+    }
+
+    private val leagueTableViewModel: LeagueTableViewModel by activityViewModels {
+        LeagueTableViewModel.Factory(LeagueRepository(apiService))
     }
 
     private lateinit var competitionLeagueAdapter: CompetitionLeagueAdapter
@@ -62,6 +67,9 @@ class LeagueListFragment : Fragment() {
 
     private fun onCompetitionLeagueClick(competitionLeague: COMPETITIONLEAGUE) {
         leagueViewModel.setIdLeagueRemember(competitionLeague.idLeague)
+        competitionLeague.strCurrentSeason?.let {
+            leagueTableViewModel.setIdLeagueSeasonRemember(competitionLeague.idLeague, it)
+        }
         findNavController().navigate(R.id.action_leagueListFragment_to_leagueFragment)
     }
 

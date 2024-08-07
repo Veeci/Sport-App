@@ -3,12 +3,116 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.main.fragment.explore.tabs.TableFragment">
+    tools:context=".presentation.main.fragment.explore.tabs.TableFragment"
+    android:padding="5dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="28"
+            android:background="@color/theme_main">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="#"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textColor="@color/text_main"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:textAlignment="textStart"
+                android:textSize="14sp"
+                android:textColor="@color/text_main"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="Pl"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textColor="@color/text_main"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="W"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textColor="@color/text_main"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="D"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textColor="@color/text_main"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="L"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textColor="@color/text_main"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="GS"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textColor="@color/text_main"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="GC"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textColor="@color/text_main"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="GD"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textColor="@color/text_main"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="Pts"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textColor="@color/text_main"/>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/leagueTableRecyclerView"
+            android:orientation="vertical"/>
+    </LinearLayout>
 
 </FrameLayout>

@@ -6,6 +6,7 @@ import com.example.sportapp.data.model.HighlightRespond
 import com.example.sportapp.data.model.LeagueDetailResponse
 import com.example.sportapp.data.model.LeagueMatchDetailResponse
 import com.example.sportapp.data.model.LeagueMatchesResponse
+import com.example.sportapp.data.model.LeagueTableResponse
 import com.example.sportapp.data.model.LeaguesResponse
 import com.example.sportapp.data.model.LineupRespond
 import com.example.sportapp.data.model.StatsRespond
@@ -55,6 +56,12 @@ interface APIService
 
     @GET("/api/v2/json/3/lookup/league/{idLeague}")
     suspend fun getLeagueDetail(@Path("idLeague") idLeague: String): LeagueDetailResponse
+
+    @GET("/api/v1/json/3/lookuptable.php")
+    suspend fun getLeagueTable(
+        @Query("l") idLeague: String,
+        @Query("s") strCurrentSeason: String
+    ): LeagueTableResponse
     //----------------------------------------------------------------------------------------------
 }
 

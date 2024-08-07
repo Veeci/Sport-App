@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="30"
+    android:background="@color/theme_main"
+    android:padding="5dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/intRank"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_main"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/strBadge"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="10"
+        android:id="@+id/strTeam"
+        android:textAlignment="textStart"
+        android:textSize="14sp"
+        android:textColor="@color/text_main"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/intPlayed"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_main"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/intWin"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_main"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/intDraw"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_main"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/intLoss"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_main"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/intGoalsFor"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_main"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/intGoalsAgainst"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_main"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/intGoalDifference"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_main"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/intPoints"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_main"/>
+
+</LinearLayout>

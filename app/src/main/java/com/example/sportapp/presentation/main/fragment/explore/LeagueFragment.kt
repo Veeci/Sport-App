@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import com.example.sportapp.R
 import com.example.sportapp.data.api.apiService
@@ -15,6 +16,13 @@ import com.example.sportapp.data.model.LEAGUEDETAIL
 import com.example.sportapp.data.repository.LeagueRepository
 import com.example.sportapp.databinding.FragmentLeagueBinding
 import com.example.sportapp.domain.LeagueViewModel
+import com.example.sportapp.presentation.ViewPagerAdapter
+import com.example.sportapp.presentation.main.fragment.explore.tabs.FixtureFragment
+import com.example.sportapp.presentation.main.fragment.explore.tabs.InfoFragment
+import com.example.sportapp.presentation.main.fragment.explore.tabs.LeagueDetailPagerAdapter
+import com.example.sportapp.presentation.main.fragment.explore.tabs.TableFragment
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class LeagueFragment : Fragment() {
 
@@ -25,13 +33,16 @@ class LeagueFragment : Fragment() {
         LeagueViewModel.Factory(LeagueRepository(apiService))
     }
 
+    private lateinit var viewPager: ViewPager2
+    private lateinit var tabLayout: TabLayout
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLeagueBinding.inflate(layoutInflater, container, false)
 
-
+        setupFunction()
 
         return binding.root
     }
@@ -60,6 +71,24 @@ class LeagueFragment : Fragment() {
         }
     }
 
+    private fun setupFunction()
+    {
+        tabLayout = binding.leagueDetailTabLayout
+        viewPager = binding.leagueDetailViewPager
+
+        val adapter = LeagueDetailPagerAdapter(this)
+        viewPager.adapter = adapter
+        viewPager.offscreenPageLimit = 3
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            when (position) {
+                0 -> tab.text = "Table"
+                1 -> tab.text = "Fixture"
+                2 -> tab.text = "Info"
+            }
+        }.attach()
+    }
+
     private fun displayLeagueDetail(league: LEAGUEDETAIL)
     {
         binding.apply {
@@ -84,5 +113,4 @@ class LeagueFragment : Fragment() {
 
         _binding = null
     }
-
 }
