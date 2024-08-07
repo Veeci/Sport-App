@@ -10,6 +10,7 @@
     android:orientation="vertical">
 
     <include
+        android:id="@+id/top_bar"
         layout="@layout/layout_top_bar"/>
 
     <androidx.viewpager2.widget.ViewPager2
