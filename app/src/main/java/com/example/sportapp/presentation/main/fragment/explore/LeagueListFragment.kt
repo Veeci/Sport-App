@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -19,6 +20,7 @@ import com.example.sportapp.databinding.FragmentLeagueListBinding
 import com.example.sportapp.domain.CompetitionLeagueViewModel
 import com.example.sportapp.domain.LeagueViewModel
 import com.example.sportapp.presentation.main.adapter.CompetitionLeagueAdapter
+import kotlinx.coroutines.awaitAll
 
 class LeagueListFragment : Fragment() {
 
@@ -71,15 +73,21 @@ class LeagueListFragment : Fragment() {
 
     private fun observeViewModel() {
         competitionLeagueViewModel.nameEnRemember.observe(viewLifecycleOwner, Observer { nameEn ->
-            if(nameEn != null)
-            {
+            if(nameEn != null) {
                 competitionLeagueViewModel.fetchCompetitionsByCountry(nameEn)
             }
         })
 
         competitionLeagueViewModel.competitionLeagues.observe(viewLifecycleOwner, Observer { competitionLeagues ->
-            Log.d("LeagueListFragment", "Received competition leagues: ${competitionLeagues.size}")
-            competitionLeagueAdapter.updateCompetitionLeagues(competitionLeagues)
+            if(competitionLeagues.isEmpty())
+            {
+                Toast.makeText(context, "This country/competition will be updated soon", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_leagueListFragment_to_mainFragment)
+            }
+            else
+            {
+                competitionLeagueAdapter.updateCompetitionLeagues(competitionLeagues)
+            }
         })
     }
 
