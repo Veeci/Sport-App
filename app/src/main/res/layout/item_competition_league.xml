@@ -1,40 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="7"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:weightSum="7">
 
-    <androidx.cardview.widget.CardView
+
+    <ImageView
+        android:id="@+id/strBadge"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_weight="1.5"
-        app:cardCornerRadius="40dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/strBadge"
-            tools:ignore="ContentDescription" />
-
-    </androidx.cardview.widget.CardView>
+        tools:ignore="ContentDescription" />
 
     <TextView
+        android:id="@+id/strLeague"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
         android:layout_weight="5"
-        android:textSize="16sp"
+        android:textAlignment="center"
+        android:gravity="center"
         android:textColor="@color/text_main"
-        android:id="@+id/strLeague"
-        android:layout_marginStart="10dp"/>
+        android:textSize="16sp" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/toLeagueDetail"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="0.5"
-        android:id="@+id/toLeagueDetail"
-        android:src="@drawable/baseline_arrow_forward_ios_24"/>
+        android:src="@drawable/baseline_arrow_forward_ios_24" />
 
 </LinearLayout>

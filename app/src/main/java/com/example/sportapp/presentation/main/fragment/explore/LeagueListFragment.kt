@@ -14,8 +14,10 @@ import com.example.sportapp.R
 import com.example.sportapp.data.api.apiService
 import com.example.sportapp.data.model.COMPETITIONLEAGUE
 import com.example.sportapp.data.repository.CompetitionLeagueRepository
+import com.example.sportapp.data.repository.LeagueRepository
 import com.example.sportapp.databinding.FragmentLeagueListBinding
 import com.example.sportapp.domain.CompetitionLeagueViewModel
+import com.example.sportapp.domain.LeagueViewModel
 import com.example.sportapp.presentation.main.adapter.CompetitionLeagueAdapter
 
 class LeagueListFragment : Fragment() {
@@ -25,6 +27,10 @@ class LeagueListFragment : Fragment() {
 
     private val competitionLeagueViewModel: CompetitionLeagueViewModel by activityViewModels {
         CompetitionLeagueViewModel.Factory(CompetitionLeagueRepository(apiService))
+    }
+
+    private val leagueViewModel: LeagueViewModel by activityViewModels {
+        LeagueViewModel.Factory(LeagueRepository(apiService))
     }
 
     private lateinit var competitionLeagueAdapter: CompetitionLeagueAdapter
@@ -53,7 +59,8 @@ class LeagueListFragment : Fragment() {
     }
 
     private fun onCompetitionLeagueClick(competitionLeague: COMPETITIONLEAGUE) {
-
+        leagueViewModel.setIdLeagueRemember(competitionLeague.idLeague)
+        findNavController().navigate(R.id.action_leagueListFragment_to_leagueFragment)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

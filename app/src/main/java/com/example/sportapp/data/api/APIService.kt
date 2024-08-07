@@ -3,6 +3,7 @@ package com.example.sportapp.data.api
 import com.example.sportapp.data.model.CompetitionLeaguesResponse
 import com.example.sportapp.data.model.CountryRespond
 import com.example.sportapp.data.model.HighlightRespond
+import com.example.sportapp.data.model.LeagueDetailResponse
 import com.example.sportapp.data.model.LeagueMatchDetailResponse
 import com.example.sportapp.data.model.LeagueMatchesResponse
 import com.example.sportapp.data.model.LeaguesResponse
@@ -51,6 +52,9 @@ interface APIService
 
     @GET("/api/v1/json/3/search_all_leagues.php")
     suspend fun getCompetitionsByCountry(@Query("c") name_en: String): CompetitionLeaguesResponse
+
+    @GET("/api/v2/json/3/lookup/league/{idLeague}")
+    suspend fun getLeagueDetail(@Path("idLeague") idLeague: String): LeagueDetailResponse
     //----------------------------------------------------------------------------------------------
 }
 
