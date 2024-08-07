@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:weightSum="7">
+
+
+    <ImageView
+        android:id="@+id/strBadge"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_weight="1.5"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/strLeague"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_weight="5"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textColor="@color/text_main"
+        android:textSize="16sp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/toLeagueDetail"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:src="@drawable/baseline_arrow_forward_ios_24" />
+
+</LinearLayout>

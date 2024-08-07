@@ -13,6 +13,9 @@
             app:destination="@id/matchDetailFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_mainFragment_to_leagueListFragment"
+            app:destination="@id/leagueListFragment" />
     </fragment>
     <fragment
         android:id="@+id/matchDetailFragment"
@@ -24,5 +27,25 @@
             app:destination="@id/mainFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/leagueListFragment"
+        android:name="com.example.sportapp.presentation.main.fragment.explore.LeagueListFragment"
+        android:label="LeagueListFragment" >
+        <action
+            android:id="@+id/action_leagueListFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_leagueListFragment_to_leagueFragment"
+            app:destination="@id/leagueFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/leagueFragment"
+        android:name="com.example.sportapp.presentation.main.fragment.explore.LeagueFragment"
+        android:label="fragment_league"
+        tools:layout="@layout/fragment_league" >
+        <action
+            android:id="@+id/action_leagueFragment_to_leagueListFragment"
+            app:destination="@id/leagueListFragment" />
     </fragment>
 </navigation>
