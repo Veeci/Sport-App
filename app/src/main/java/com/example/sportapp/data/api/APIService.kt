@@ -10,6 +10,7 @@ import com.example.sportapp.data.model.LeagueTableResponse
 import com.example.sportapp.data.model.LeaguesResponse
 import com.example.sportapp.data.model.LineupRespond
 import com.example.sportapp.data.model.StatsRespond
+import com.example.sportapp.data.model.TeamResponse
 import com.example.sportapp.data.model.TimelineRespond
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -62,6 +63,9 @@ interface APIService
         @Query("l") idLeague: String,
         @Query("s") strCurrentSeason: String
     ): LeagueTableResponse
+
+    @GET("/api/v2/json/3/lookup/team/{idTeam}")
+    suspend fun getTeamDetail(@Path("idTeam") idTeam: String): TeamResponse
     //----------------------------------------------------------------------------------------------
 }
 

@@ -1,7 +1,6 @@
-package com.example.sportapp.presentation.main.fragment.explore
+package com.example.sportapp.presentation.main.fragment.explore.leaguelist
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +22,6 @@ import com.example.sportapp.domain.LeagueTableViewModel
 import com.example.sportapp.domain.LeagueViewModel
 import com.example.sportapp.domain.MatchViewModel
 import com.example.sportapp.presentation.main.adapter.CompetitionLeagueAdapter
-import kotlinx.coroutines.awaitAll
 
 class LeagueListFragment : Fragment() {
 

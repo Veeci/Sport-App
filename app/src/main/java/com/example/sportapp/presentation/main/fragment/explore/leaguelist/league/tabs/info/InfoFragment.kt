@@ -1,4 +1,4 @@
-package com.example.sportapp.presentation.main.fragment.explore.tabs
+package com.example.sportapp.presentation.main.fragment.explore.leaguelist.league.tabs.info
 
 import android.content.Intent
 import android.net.Uri
@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import coil.load
-import com.example.sportapp.R
 import com.example.sportapp.data.api.apiService
 import com.example.sportapp.data.model.LEAGUEDETAIL
 import com.example.sportapp.data.repository.LeagueRepository

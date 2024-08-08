@@ -1,4 +1,4 @@
-package com.example.sportapp.presentation.main.fragment.explore.tabs
+package com.example.sportapp.presentation.main.fragment.explore.leaguelist.league.tabs.table
 
 import android.os.Bundle
 import android.util.Log
@@ -8,13 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sportapp.R
 import com.example.sportapp.data.api.apiService
 import com.example.sportapp.data.repository.LeagueRepository
+import com.example.sportapp.data.repository.TeamRepository
 import com.example.sportapp.databinding.FragmentTableBinding
 import com.example.sportapp.domain.LeagueTableViewModel
-import com.example.sportapp.domain.LeagueViewModel
+import com.example.sportapp.domain.TeamViewModel
 import com.example.sportapp.presentation.main.adapter.TableAdapter
 
 class TableFragment : Fragment() {
@@ -24,6 +26,10 @@ class TableFragment : Fragment() {
 
     private val leagueTableViewModel: LeagueTableViewModel by activityViewModels {
         LeagueTableViewModel.Factory(LeagueRepository(apiService))
+    }
+
+    private val teamViewModel: TeamViewModel by activityViewModels {
+        TeamViewModel.Factory(TeamRepository(apiService))
     }
 
     private lateinit var tableAdapter: TableAdapter
@@ -41,7 +47,7 @@ class TableFragment : Fragment() {
 
     private fun setupRecyclerView()
     {
-        tableAdapter = TableAdapter()
+        tableAdapter = TableAdapter{ onTeamClick(it) }
 
         binding.leagueTableRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
@@ -67,6 +73,12 @@ class TableFragment : Fragment() {
             Log.d("TableFragment", "League table updated: $leagueTable")
             tableAdapter.updateTables(leagueTable)
         })
+    }
+
+    private fun onTeamClick(idTeam: String)
+    {
+        teamViewModel.setIdTeamRemember(idTeam)
+        findNavController().navigate(R.id.action_leagueFragment_to_teamFragment)
     }
 
     override fun onDestroyView() {

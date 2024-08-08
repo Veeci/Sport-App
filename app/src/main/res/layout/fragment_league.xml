@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/theme_main"
     android:id="@+id/league"
-    tools:context=".presentation.main.fragment.explore.LeagueFragment">
+    tools:context=".presentation.main.fragment.explore.leaguelist.league.LeagueFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

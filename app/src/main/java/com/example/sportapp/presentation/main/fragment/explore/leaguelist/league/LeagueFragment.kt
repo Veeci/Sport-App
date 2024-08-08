@@ -1,4 +1,4 @@
-package com.example.sportapp.presentation.main.fragment.explore
+package com.example.sportapp.presentation.main.fragment.explore.leaguelist.league
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,11 +18,7 @@ import com.example.sportapp.data.repository.MatchRepository
 import com.example.sportapp.databinding.FragmentLeagueBinding
 import com.example.sportapp.domain.LeagueViewModel
 import com.example.sportapp.domain.MatchViewModel
-import com.example.sportapp.presentation.ViewPagerAdapter
-import com.example.sportapp.presentation.main.fragment.explore.tabs.FixtureFragment
-import com.example.sportapp.presentation.main.fragment.explore.tabs.InfoFragment
-import com.example.sportapp.presentation.main.fragment.explore.tabs.LeagueDetailPagerAdapter
-import com.example.sportapp.presentation.main.fragment.explore.tabs.TableFragment
+import com.example.sportapp.presentation.main.fragment.explore.leaguelist.league.tabs.LeagueDetailPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 

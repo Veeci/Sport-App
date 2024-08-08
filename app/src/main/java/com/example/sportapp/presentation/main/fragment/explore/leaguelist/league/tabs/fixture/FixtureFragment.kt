@@ -1,4 +1,4 @@
-package com.example.sportapp.presentation.main.fragment.explore.tabs
+package com.example.sportapp.presentation.main.fragment.explore.leaguelist.league.tabs.fixture
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sportapp.R
 import com.example.sportapp.data.api.apiService
 import com.example.sportapp.data.repository.MatchRepository
 import com.example.sportapp.databinding.FragmentFixtureBinding

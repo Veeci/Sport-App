@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/leagueListFragment"
-        android:name="com.example.sportapp.presentation.main.fragment.explore.LeagueListFragment"
+        android:name="com.example.sportapp.presentation.main.fragment.explore.leaguelist.LeagueListFragment"
         android:label="LeagueListFragment" >
         <action
             android:id="@+id/action_leagueListFragment_to_mainFragment"
@@ -41,11 +41,23 @@
     </fragment>
     <fragment
         android:id="@+id/leagueFragment"
-        android:name="com.example.sportapp.presentation.main.fragment.explore.LeagueFragment"
+        android:name="com.example.sportapp.presentation.main.fragment.explore.leaguelist.league.LeagueFragment"
         android:label="fragment_league"
         tools:layout="@layout/fragment_league" >
         <action
             android:id="@+id/action_leagueFragment_to_leagueListFragment"
             app:destination="@id/leagueListFragment" />
+        <action
+            android:id="@+id/action_leagueFragment_to_teamFragment"
+            app:destination="@id/teamFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamFragment"
+        android:name="com.example.sportapp.presentation.main.fragment.explore.leaguelist.league.tabs.table.team.TeamFragment"
+        android:label="fragment_team"
+        tools:layout="@layout/fragment_team" >
+        <action
+            android:id="@+id/action_teamFragment_to_leagueFragment"
+            app:destination="@id/leagueFragment" />
     </fragment>
 </navigation>

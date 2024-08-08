@@ -9,9 +9,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.sportapp.data.model.LEAGUETABLE
+import com.example.sportapp.data.model.TEAM
 import com.example.sportapp.databinding.ItemTableBinding
 
-class TableAdapter: RecyclerView.Adapter<TableAdapter.TableViewHolder>()
+class TableAdapter(private val onTeamClick: (String) -> Unit): RecyclerView.Adapter<TableAdapter.TableViewHolder>()
 {
     private var tables: List<LEAGUETABLE> = listOf()
 
@@ -49,6 +50,10 @@ class TableAdapter: RecyclerView.Adapter<TableAdapter.TableViewHolder>()
             intGoalsAgainst.text = table.intGoalsAgainst
             intGoalDifference.text = table.intGoalDifference
             intPoints.text = table.intPoints
+
+            root.setOnClickListener {
+                onTeamClick(table.idTeam)
+            }
 
             when(intRank.text.toString().toInt())
             {

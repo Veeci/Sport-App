@@ -1,0 +1,8 @@
+package com.example.sportapp.data.repository
+
+import com.example.sportapp.data.api.APIService
+
+class TeamRepository(private val apiService: APIService)
+{
+    suspend fun getTeamDetail(idTeam: String) = apiService.getTeamDetail(idTeam)
+}

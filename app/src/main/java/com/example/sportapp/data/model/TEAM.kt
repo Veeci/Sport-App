@@ -1,0 +1,77 @@
+package com.example.sportapp.data.model
+
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class TEAM(
+    @SerializedName("idTeam") val idTeam: String = "",
+    @SerializedName("idSoccerXML") val idSoccerXML: String = "",
+    @SerializedName("idAPIfootball") val idAPIfootball: String = "",
+    @SerializedName("intLoved") val intLoved: String? = null,
+    @SerializedName("strTeam") val strTeam: String = "",
+    @SerializedName("strTeamAlternate") val strTeamAlternate: String = "",
+    @SerializedName("strTeamShort") val strTeamShort: String = "",
+    @SerializedName("intFormedYear") val intFormedYear: String = "",
+    @SerializedName("strSport") val strSport: String = "",
+    @SerializedName("strLeague") val strLeague: String = "",
+    @SerializedName("idLeague") val idLeague: String = "",
+    @SerializedName("strLeague2") val strLeague2: String = "",
+    @SerializedName("idLeague2") val idLeague2: String = "",
+    @SerializedName("strLeague3") val strLeague3: String = "",
+    @SerializedName("idLeague3") val idLeague3: String? = null,
+    @SerializedName("strLeague4") val strLeague4: String = "",
+    @SerializedName("idLeague4") val idLeague4: String? = null,
+    @SerializedName("strLeague5") val strLeague5: String = "",
+    @SerializedName("idLeague5") val idLeague5: String? = null,
+    @SerializedName("strLeague6") val strLeague6: String = "",
+    @SerializedName("idLeague6") val idLeague6: String? = null,
+    @SerializedName("strLeague7") val strLeague7: String = "",
+    @SerializedName("idLeague7") val idLeague7: String? = null,
+    @SerializedName("strDivision") val strDivision: String? = null,
+    @SerializedName("idVenue") val idVenue: String = "",
+    @SerializedName("strStadium") val strStadium: String = "",
+    @SerializedName("strKeywords") val strKeywords: String = "",
+    @SerializedName("strRSS") val strRSS: String = "",
+    @SerializedName("strLocation") val strLocation: String = "",
+    @SerializedName("intStadiumCapacity") val intStadiumCapacity: String = "",
+    @SerializedName("strWebsite") val strWebsite: String = "",
+    @SerializedName("strFacebook") val strFacebook: String = "",
+    @SerializedName("strTwitter") val strTwitter: String = "",
+    @SerializedName("strInstagram") val strInstagram: String = "",
+    @SerializedName("strDescriptionEN") val strDescriptionEN: String = "",
+    @SerializedName("strDescriptionDE") val strDescriptionDE: String? = null,
+    @SerializedName("strDescriptionFR") val strDescriptionFR: String? = null,
+    @SerializedName("strDescriptionCN") val strDescriptionCN: String? = null,
+    @SerializedName("strDescriptionIT") val strDescriptionIT: String = "",
+    @SerializedName("strDescriptionJP") val strDescriptionJP: String? = null,
+    @SerializedName("strDescriptionRU") val strDescriptionRU: String? = null,
+    @SerializedName("strDescriptionES") val strDescriptionES: String? = null,
+    @SerializedName("strDescriptionPT") val strDescriptionPT: String? = null,
+    @SerializedName("strDescriptionSE") val strDescriptionSE: String? = null,
+    @SerializedName("strDescriptionNL") val strDescriptionNL: String? = null,
+    @SerializedName("strDescriptionHU") val strDescriptionHU: String? = null,
+    @SerializedName("strDescriptionNO") val strDescriptionNO: String? = null,
+    @SerializedName("strDescriptionIL") val strDescriptionIL: String? = null,
+    @SerializedName("strDescriptionPL") val strDescriptionPL: String? = null,
+    @SerializedName("strColour1") val strColour1: String = "",
+    @SerializedName("strColour2") val strColour2: String = "",
+    @SerializedName("strColour3") val strColour3: String = "",
+    @SerializedName("strGender") val strGender: String = "",
+    @SerializedName("strCountry") val strCountry: String = "",
+    @SerializedName("strBadge") val strBadge: String = "",
+    @SerializedName("strLogo") val strLogo: String = "",
+    @SerializedName("strFanart1") val strFanart1: String = "",
+    @SerializedName("strFanart2") val strFanart2: String = "",
+    @SerializedName("strFanart3") val strFanart3: String = "",
+    @SerializedName("strFanart4") val strFanart4: String = "",
+    @SerializedName("strBanner") val strBanner: String = "",
+    @SerializedName("strEquipment") val strEquipment: String = "",
+    @SerializedName("strYoutube") val strYoutube: String = "",
+    @SerializedName("strLocked") val strLocked: String = ""
+): Parcelable
+
+data class TeamResponse(
+    @SerializedName("teams") val teams: List<TEAM>
+)
