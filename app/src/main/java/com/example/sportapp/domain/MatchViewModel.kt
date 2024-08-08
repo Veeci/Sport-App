@@ -29,19 +29,24 @@ class MatchViewModel(private val repository: MatchRepository): ViewModel()
         _idEventRemember.value = idEvent
     }
 
-    private val _idLeagueRemember = MutableLiveData<String>()
-    val idLeagueRemember: LiveData<String> get() = _idLeagueRemember
+    private val _idLeagueRemember = MutableLiveData<String?>()
+    val idLeagueRemember: LiveData<String?> get() = _idLeagueRemember
 
     fun setIdLeagueRemember(idLeague: String)
     {
         _idLeagueRemember.value = idLeague
     }
 
+    fun clearIdLeagueRemember()
+    {
+        _idLeagueRemember.value = null
+    }
+
     private val _matchesPrev = MutableLiveData<List<LEAGUEMATCH>>()
     val matchesPrev: LiveData<List<LEAGUEMATCH>> get() = _matchesPrev
 
-    private val _matchesNext = MutableLiveData<List<LEAGUEMATCH>>()
-    val matchesNext: LiveData<List<LEAGUEMATCH>> get() = _matchesNext
+    private val _matchesNext = MutableLiveData<List<LEAGUEMATCH>?>()
+    val matchesNext: LiveData<List<LEAGUEMATCH>?> get() = _matchesNext
 
     private val _matchDetail = MutableLiveData<List<LEAGUEMATCH>>()
     val matchDetail: LiveData<List<LEAGUEMATCH>> get() = _matchDetail
@@ -74,16 +79,15 @@ class MatchViewModel(private val repository: MatchRepository): ViewModel()
         }
     }
 
-    fun fetchLeagueMatchesNext(idLeague: String)
-    {
+    fun fetchLeagueMatchesNext(idLeague: String) {
+        Log.d("MatchViewModel", "Fetching next matches for league ID: $idLeague")
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = repository.getLeagueMatchesNext(idLeague)
+                Log.d("MatchViewModel", "API response: $response")
                 _matchesNext.postValue(response.leagueMatches)
-            }
-            catch (e: Exception)
-            {
-                e.printStackTrace()
+            } catch (e: Exception) {
+                Log.e("MatchViewModel", "Error fetching next matches", e)
             }
         }
     }

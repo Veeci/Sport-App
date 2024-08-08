@@ -98,7 +98,7 @@ class HomeFragment : Fragment() {
         })
 
         matchViewModel.matchesNext.observe(viewLifecycleOwner, Observer { matches ->
-            matchNextAdapter.updateMatches(matches)
+            matchNextAdapter.updateMatches(matches?: listOf())
         })
     }
 

@@ -79,16 +79,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/strLeague_detail"
                 android:gravity="center"/>
 
-            <ImageView
-                android:id="@+id/strPoster"
-                android:layout_width="280dp"
-                android:layout_height="350dp"
-                android:visibility="gone"
-                tools:ignore="ContentDescription"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/strCountry_detail"
-                app:layout_constraintStart_toStartOf="parent"/>
-
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/leagueDetailTabLayout"
                 android:layout_width="match_parent"

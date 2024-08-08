@@ -13,12 +13,17 @@ import kotlinx.coroutines.launch
 
 class LeagueViewModel(private val repository: LeagueRepository): ViewModel()
 {
-    private val _idLeagueRemember = MutableLiveData<String>()
-    val idLeagueRemember: LiveData<String> get() = _idLeagueRemember
+    private val _idLeagueRemember = MutableLiveData<String?>()
+    val idLeagueRemember: LiveData<String?> get() = _idLeagueRemember
 
     fun setIdLeagueRemember(idLeague: String)
     {
         _idLeagueRemember.value = idLeague
+    }
+
+    fun clearIdLeagueRemember()
+    {
+        _idLeagueRemember.value = null
     }
 
     private val _leagues = MutableLiveData<List<LEAGUE>>()

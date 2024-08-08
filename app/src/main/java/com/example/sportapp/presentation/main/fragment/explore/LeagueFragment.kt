@@ -14,8 +14,10 @@ import com.example.sportapp.R
 import com.example.sportapp.data.api.apiService
 import com.example.sportapp.data.model.LEAGUEDETAIL
 import com.example.sportapp.data.repository.LeagueRepository
+import com.example.sportapp.data.repository.MatchRepository
 import com.example.sportapp.databinding.FragmentLeagueBinding
 import com.example.sportapp.domain.LeagueViewModel
+import com.example.sportapp.domain.MatchViewModel
 import com.example.sportapp.presentation.ViewPagerAdapter
 import com.example.sportapp.presentation.main.fragment.explore.tabs.FixtureFragment
 import com.example.sportapp.presentation.main.fragment.explore.tabs.InfoFragment
@@ -31,6 +33,10 @@ class LeagueFragment : Fragment() {
 
     private val leagueViewModel: LeagueViewModel by activityViewModels {
         LeagueViewModel.Factory(LeagueRepository(apiService))
+    }
+
+    private val matchViewModel: MatchViewModel by activityViewModels {
+        MatchViewModel.Factory(MatchRepository(apiService))
     }
 
     private lateinit var viewPager: ViewPager2
@@ -68,6 +74,7 @@ class LeagueFragment : Fragment() {
 
         binding.back.setOnClickListener {
             findNavController().navigate(R.id.action_leagueFragment_to_leagueListFragment)
+            matchViewModel.clearIdLeagueRemember()
         }
     }
 
@@ -99,9 +106,12 @@ class LeagueFragment : Fragment() {
             }
             else
             {
-                strBanner.visibility = View.GONE
-                strPoster.load(league.strPoster)
-                strPoster.visibility = View.VISIBLE
+                strBanner.load(league.strPoster)
+                val layoutParams = strBanner.layoutParams
+                layoutParams.width = 350
+                layoutParams.height = 280
+                strBanner.layoutParams = layoutParams
+                strBanner.requestLayout()
             }
             strLeagueDetail.text = league.strLeague
             strCountryDetail.text = league.strCountry

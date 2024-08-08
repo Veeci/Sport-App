@@ -68,6 +68,7 @@ class LeagueListFragment : Fragment() {
 
         binding.back.setOnClickListener {
             findNavController().navigate(R.id.action_leagueListFragment_to_mainFragment)
+            matchViewModel.clearIdLeagueRemember()
         }
     }
 
@@ -89,6 +90,8 @@ class LeagueListFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+        matchViewModel.clearIdLeagueRemember()
+
         competitionLeagueViewModel.nameEnRemember.observe(viewLifecycleOwner, Observer { nameEn ->
             if(nameEn != null) {
                 competitionLeagueViewModel.fetchCompetitionsByCountry(nameEn)

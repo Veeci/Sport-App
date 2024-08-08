@@ -25,7 +25,7 @@ class FixtureFragment : Fragment() {
         MatchViewModel.Factory(MatchRepository(apiService))
     }
 
-    private lateinit var adapter: SchedualAdapter
+    private lateinit var schedualAdapter: SchedualAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,11 +40,11 @@ class FixtureFragment : Fragment() {
 
     private fun setupRecyclerView()
     {
-        adapter = SchedualAdapter()
+        schedualAdapter = SchedualAdapter()
 
         binding.schedualRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = this@FixtureFragment.adapter
+            adapter = schedualAdapter
         }
     }
 
@@ -65,15 +65,10 @@ class FixtureFragment : Fragment() {
         })
 
         viewModel.matchesNext.observe(viewLifecycleOwner, Observer { matches ->
-            if (matches != null) {
-                Log.d("FixtureFragment", "Received ${matches.size} matches")
-                adapter.updateScheduals(matches)
-            } else {
-                Log.d("FixtureFragment", "Matches data is null")
-            }
+            Log.d("FixtureFragment", "Matches received: $matches")
+            schedualAdapter.updateScheduals(matches?: listOf())
         })
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
