@@ -1,5 +1,7 @@
 package com.example.sportapp.presentation.main.fragment.explore.tabs
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -64,8 +66,29 @@ class InfoFragment : Fragment() {
                 strBadge.load(league.strBadge)
                 strLogo.load(league.strLogo)
                 strPoster.load(league.strPoster)
+                strWebsite.setOnClickListener {
+                    gotoUrl(league.strWebsite.toString())
+                }
+                strFacebook.setOnClickListener {
+                    gotoUrl(league.strFacebook.toString())
+                }
+
+                strYoutube.setOnClickListener {
+                    gotoUrl(league.strYoutube.toString())
+                }
             }
         }
+    }
+
+    private fun gotoUrl(url: String) {
+        val formattedUrl = if (!url.startsWith("http://") && !url.startsWith("https://")){
+            "https://$url"
+        } else {
+            url
+        }
+
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(formattedUrl))
+        startActivity(intent)
     }
 
     override fun onDestroyView() {
