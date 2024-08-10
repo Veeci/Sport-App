@@ -1,98 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.main.fragment.explore.leaguelist.league.tabs.table.team.TeamFragment"
     android:orientation="vertical"
     android:background="@color/theme_main">
 
     <LinearLayout
-        android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/baseline_arrow_back_ios_24"
-            android:id="@+id/back"/>
-
-        <TextView
-            android:textColor="@color/text_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:id="@+id/strTeamShort"
-            android:textStyle="bold"
-            android:layout_marginStart="20dp"/>
-
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/strFanart2"/>
-
-    <LinearLayout
-        android:id="@+id/strTeamContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="5"
-        android:padding="10dp">
-
-        <ImageView
-            android:layout_width="0sp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/strBadge"
-            android:padding="5dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_arrow_back_ios_24"
+                android:id="@+id/back"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
                 android:textColor="@color/text_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:id="@+id/strTeamShort"
                 android:textStyle="bold"
-                android:id="@+id/strTeam" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/text_main"
-                android:id="@+id/intFormedYear"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/text_main"
-                android:id="@+id/intStadiumCapacity"/>
+                android:layout_marginStart="20dp"/>
 
         </LinearLayout>
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/strFanart2"/>
+
+        <LinearLayout
+            android:id="@+id/strTeamContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="5"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/strBadge"
+                android:padding="5dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:textColor="@color/text_main"
+                    android:textStyle="bold"
+                    android:id="@+id/strTeam" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_main"
+                    android:id="@+id/intFormedYear"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_main"
+                    android:id="@+id/intStadiumCapacity"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:id="@+id/teamDetailTabLayout"
+            android:background="@color/theme_main"
+            app:tabTextColor="@color/text_main"
+            app:tabIndicatorColor="@color/text_secondary"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/teamDetailViewPager"
+            android:nestedScrollingEnabled="false"/>
+
     </LinearLayout>
 
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:id="@+id/teamDetailTabLayout"
-        android:background="@null"/>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/teamDetailViewPager" />
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

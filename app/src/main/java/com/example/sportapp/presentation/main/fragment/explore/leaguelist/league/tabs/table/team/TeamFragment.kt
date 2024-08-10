@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import com.example.sportapp.R
 import com.example.sportapp.data.api.APIService
@@ -17,6 +19,9 @@ import com.example.sportapp.data.model.TEAM
 import com.example.sportapp.data.repository.TeamRepository
 import com.example.sportapp.databinding.FragmentTeamBinding
 import com.example.sportapp.domain.TeamViewModel
+import com.example.sportapp.presentation.main.fragment.explore.leaguelist.league.tabs.table.team.tabs.TeamDetailPagerAdapter
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class TeamFragment : Fragment() {
 
@@ -27,7 +32,10 @@ class TeamFragment : Fragment() {
         TeamViewModel.Factory(TeamRepository(apiService))
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private lateinit var viewPager: ViewPager2
+    private lateinit var tabLayout: TabLayout
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         _binding = FragmentTeamBinding.inflate(inflater, container, false)
 
@@ -49,6 +57,20 @@ class TeamFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        tabLayout = binding.teamDetailTabLayout
+        viewPager = binding.teamDetailViewPager
+
+        val adapter = TeamDetailPagerAdapter(this)
+        viewPager.adapter = adapter
+        viewPager.offscreenPageLimit = 2
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            when (position) {
+                0 -> tab.text = "Detail"
+                1 -> tab.text = "Squad"
+            }
+        }.attach()
     }
 
     private fun displayTeamDetail(team: List<TEAM>)
@@ -71,10 +93,13 @@ class TeamFragment : Fragment() {
             }
             if(color.equals(Color.WHITE))
             {
-                strTeamShort.setTextColor(Color.BLACK)
+                strTeamShort.setTextColor(ContextCompat.getColor(requireContext(), R.color.theme_main))
+                strTeam.setTextColor(ContextCompat.getColor(requireContext(), R.color.theme_main))
+                intFormedYear.setTextColor(ContextCompat.getColor(requireContext(), R.color.theme_main))
+                intStadiumCapacity.setTextColor(ContextCompat.getColor(requireContext(), R.color.theme_main))
             }
             topBar.setBackgroundColor(color)
-            topBar.setBackgroundColor(color)
+            strTeamContainer.setBackgroundColor(color)
             strBadge.load(team.strBadge)
             strTeam.text = team.strTeam
             intFormedYear.text = "Est: ${team.intFormedYear} - ${team.strLocation}"

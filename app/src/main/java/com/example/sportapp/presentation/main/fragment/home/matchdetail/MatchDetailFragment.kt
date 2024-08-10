@@ -40,19 +40,8 @@ class MatchDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMatchDetailBinding.inflate(inflater, container, false)
-
-        val fragmentList = arrayListOf(
-            StatsFragment(),
-            LineupFragment()
-        )
-
-        val adapter = ViewPagerAdapter(
-            fragmentList,
-            requireActivity().supportFragmentManager,
-            lifecycle
-        )
 
         binding.back.setOnClickListener {
             findNavController().navigate(R.id.action_matchDetailFragment_to_mainFragment)

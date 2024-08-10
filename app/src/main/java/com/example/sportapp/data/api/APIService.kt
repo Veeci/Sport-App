@@ -12,6 +12,7 @@ import com.example.sportapp.data.model.LineupRespond
 import com.example.sportapp.data.model.StatsRespond
 import com.example.sportapp.data.model.TeamResponse
 import com.example.sportapp.data.model.TimelineRespond
+import com.example.sportapp.data.model.VenueResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -66,6 +67,9 @@ interface APIService
 
     @GET("/api/v2/json/3/lookup/team/{idTeam}")
     suspend fun getTeamDetail(@Path("idTeam") idTeam: String): TeamResponse
+
+    @GET("/api/v2/json/3/lookup/venue/{idVenue}")
+    suspend fun getVenue(@Path("idVenue") idVenue: String): VenueResponse
     //----------------------------------------------------------------------------------------------
 }
 
