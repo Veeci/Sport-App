@@ -2,6 +2,7 @@ package com.example.sportapp.data.api
 
 import com.example.sportapp.data.model.CompetitionLeaguesResponse
 import com.example.sportapp.data.model.CountryRespond
+import com.example.sportapp.data.model.EquipmentResponse
 import com.example.sportapp.data.model.HighlightRespond
 import com.example.sportapp.data.model.LeagueDetailResponse
 import com.example.sportapp.data.model.LeagueMatchDetailResponse
@@ -70,6 +71,9 @@ interface APIService
 
     @GET("/api/v2/json/3/lookup/venue/{idVenue}")
     suspend fun getVenue(@Path("idVenue") idVenue: String): VenueResponse
+
+    @GET("/api/v1/json/3/lookupequipment.php")
+    suspend fun getEquipment(@Query("id") idTeam: String): EquipmentResponse
     //----------------------------------------------------------------------------------------------
 }
 

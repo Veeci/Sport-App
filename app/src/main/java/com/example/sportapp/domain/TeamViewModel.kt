@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.sportapp.data.model.EQUIPMENT
 import com.example.sportapp.data.model.TEAM
 import com.example.sportapp.data.model.VENUE
 import com.example.sportapp.data.repository.TeamRepository
@@ -22,19 +23,14 @@ class TeamViewModel(private val teamRepository: TeamRepository) : ViewModel()
         _idTeam.value = idTeam
     }
 
-    private val _idVenue = MutableLiveData<String>()
-    val idVenue: LiveData<String> get() = _idVenue
-
-    fun setIdVenueRemember(idVenue: String)
-    {
-        _idVenue.value = idVenue
-    }
-
     private val _teamDetail = MutableLiveData<List<TEAM>>()
     val teamDetail: LiveData<List<TEAM>> get() = _teamDetail
 
     private val _teamVenue = MutableLiveData<List<VENUE>>()
     val teamVenue: LiveData<List<VENUE>> get() = _teamVenue
+
+    private val _equipment = MutableLiveData<List<EQUIPMENT>>()
+    val equipment: LiveData<List<EQUIPMENT>> get() = _equipment
 
     fun fetchTeamDetail(idTeam: String)
     {
@@ -53,7 +49,7 @@ class TeamViewModel(private val teamRepository: TeamRepository) : ViewModel()
         }
     }
 
-    fun fetchTeamVenue(idVenue: String)
+    private fun fetchTeamVenue(idVenue: String)
     {
         viewModelScope.launch(Dispatchers.IO) {
             try
@@ -63,6 +59,18 @@ class TeamViewModel(private val teamRepository: TeamRepository) : ViewModel()
                 _teamVenue.postValue(response.venues)
             }
             catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun fetchEquipment(idTeam: String)
+    {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = teamRepository.getEquipment(idTeam)
+                _equipment.postValue(response.equipment)
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }

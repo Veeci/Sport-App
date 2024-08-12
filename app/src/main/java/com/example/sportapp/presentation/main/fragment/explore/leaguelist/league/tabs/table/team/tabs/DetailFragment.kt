@@ -7,14 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.sportapp.R
 import com.example.sportapp.data.api.apiService
+import com.example.sportapp.data.model.EQUIPMENT
 import com.example.sportapp.data.model.TEAM
 import com.example.sportapp.data.model.VENUE
 import com.example.sportapp.data.repository.TeamRepository
 import com.example.sportapp.databinding.FragmentDetailBinding
 import com.example.sportapp.domain.TeamViewModel
+import com.example.sportapp.presentation.main.adapter.EquipmentAdapter
 
 class DetailFragment : Fragment() {
 
@@ -24,6 +27,8 @@ class DetailFragment : Fragment() {
     private val teamViewModel: TeamViewModel by activityViewModels {
         TeamViewModel.Factory(TeamRepository(apiService))
     }
+
+    private lateinit var equipmentAdapter: EquipmentAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +43,12 @@ class DetailFragment : Fragment() {
 
     private fun setupRecyclerView()
     {
+        equipmentAdapter = EquipmentAdapter()
 
+        binding.kitRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = equipmentAdapter
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,6 +65,12 @@ class DetailFragment : Fragment() {
 
         teamViewModel.teamVenue.observe(viewLifecycleOwner, Observer { teamVenue ->
             displayTeamVenue(teamVenue)
+        })
+
+        teamViewModel.fetchEquipment(teamViewModel.idTeam.value.toString())
+
+        teamViewModel.equipment.observe(viewLifecycleOwner, Observer { equipment ->
+            equipmentAdapter.updateEquipments(equipment)
         })
     }
 

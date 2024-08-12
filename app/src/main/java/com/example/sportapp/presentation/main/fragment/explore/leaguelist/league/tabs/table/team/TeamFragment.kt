@@ -64,6 +64,7 @@ class TeamFragment : Fragment() {
         val adapter = TeamDetailPagerAdapter(this)
         viewPager.adapter = adapter
         viewPager.offscreenPageLimit = 2
+        viewPager.isUserInputEnabled = false
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
